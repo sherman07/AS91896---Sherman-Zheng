@@ -67,5 +67,4 @@ Team_Member_Dictionary = {
 
 }
 
-easygui.msgbox("Hii")
 easygui.msgbox("Hi")
