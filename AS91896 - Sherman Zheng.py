@@ -80,9 +80,11 @@ def add_new_task():
                                         choices=["Completed", \
                                                  "In Progress", "Blocked"])
 
-
+    #Creating a new task ID, having the T as task.
+    #Having the current number of Task in the dictionary + 1
     new_task_id = "T" + len(Task_Dictionary) + 1
     
+    #The new_task cantains all information that the user had input.
     new_task = {
         "Title": title,
         "Description": description,
@@ -94,3 +96,4 @@ def add_new_task():
     Task_Dictionary[new_task_id] = new_task
     
     easygui.msgbox("New task added with ID: " + new_task_id)
+add_new_task()
