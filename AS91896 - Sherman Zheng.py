@@ -66,7 +66,12 @@ Team_Member_Dictionary = {
     }
 
 }
-#Adding a new task to the project's task list:
+"""
+Adding a new task to the project's task dictionary,in this
+situation, the function will ask the user multiple questions.
+Such as the title, description, priority, status of the new
+created task.
+"""
 def add_new_task():
     #Asking the user to add a title variable of the new task.
     title = easygui.enterbox("Enter the title of the task:")
@@ -82,7 +87,7 @@ def add_new_task():
 
     #Creating a new task ID, having the T as task.
     #Having the current number of Task in the dictionary + 1
-    new_task_id = "T" + len(Task_Dictionary) + 1
+    new_task_id = "T" + str(len(Task_Dictionary) + 1)
     
     #The new_task cantains all information that the user had input.
     new_task = {
@@ -92,8 +97,11 @@ def add_new_task():
         "Priority": priority,
         "Status": status
     }
-    
+    #Adding a new task to the Task_Dictionary, with an ID.
     Task_Dictionary[new_task_id] = new_task
     
     easygui.msgbox("New task added with ID: " + new_task_id)
 add_new_task()
+
+#Updating a new information to specific task from the task dictionary.
+def update_task():
