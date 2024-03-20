@@ -66,6 +66,7 @@ Team_Member_Dictionary = {
     }
 
 }
+
 """
 Adding a new task to the project's task dictionary,in this
 situation, the function will ask the user multiple questions.
@@ -73,20 +74,25 @@ Such as the title, description, priority, status of the new
 created task.
 """
 def add_new_task():
+
     #Asking the user to add a title variable of the new task.
     title = easygui.enterbox("Enter the title of the task:")
+
     #Asking the user to add a description variable of the new task.
     description = easygui.enterbox("Enter the description of the task:")
+
     #Asking the user to add a priority variable of the new task.
     priority = easygui.buttonbox("Select Priority", \
                                         choices=["1", "2", "3"])
+    
     #Asking the user to add a status variable of the new task.
     status = easygui.buttonbox("Select Priority", \
                                         choices=["Completed", \
                                                  "In Progress", "Blocked"])
-
-    #Creating a new task ID, having the T as task.
-    #Having the current number of Task in the dictionary + 1
+    """
+    The ID = ... will creates a new task ID, having the T as task.
+    Having the current number of Task in the dictionary + 1.
+    """
     new_task_id = "T" + str(len(Task_Dictionary) + 1)
     
     #The new_task cantains all information that the user had input.
@@ -97,11 +103,29 @@ def add_new_task():
         "Priority": priority,
         "Status": status
     }
+
     #Adding a new task to the Task_Dictionary, with an ID.
     Task_Dictionary[new_task_id] = new_task
     
     easygui.msgbox("New task added with ID: " + new_task_id)
 add_new_task()
-
-#Updating a new information to specific task from the task dictionary.
+"""
+Updating a new information to a specific task from the task dictionary.
+The function will allows user to update informations in specific task,
+which is from the task dictionary.
+"""
 def update_task():
+    #Asking the user to 
+    update_task = easygui.enterbox("Enter the task to update:")
+    #Asking the user to update a title variable of the specific task.
+    update_title = easygui.enterbox("Enter the title to update:")
+    update_description = easygui.enterbox("Enter the description to update:")
+    update_assignee = easygui.enterbox("Enter the assignee to update:")
+    update_priority = easygui.buttonbox("Select Priority", \
+                                        choices=["1", "2", "3"])
+    update_status = easygui.buttonbox("Select Priority", \
+                                        choices=["Completed", \
+                                                 "In Progress", "Blocked"])
+update_task()
+    
+
