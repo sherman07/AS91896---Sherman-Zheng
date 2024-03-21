@@ -73,42 +73,52 @@ situation, the function will ask the user multiple questions.
 Such as the title, description, priority, status of the new
 created task.
 """
+output = ""
+
 def add_new_task():
+    while True:
+        #Asking the user to add a title variable of the new task.
+        title = easygui.enterbox("Enter the title of the task:")
 
-    #Asking the user to add a title variable of the new task.
-    title = easygui.enterbox("Enter the title of the task:")
+        #Asking the user to add a description variable of the new task.
+        description = easygui.enterbox("Enter the description of the task:")
 
-    #Asking the user to add a description variable of the new task.
-    description = easygui.enterbox("Enter the description of the task:")
+        #Asking the user to add a priority variable of the new task.
+        priority = easygui.buttonbox("Select Priority", \
+                                            choices=["1", "2", "3"])
+        
+        #Asking the user to add a status variable of the new task.
+        status = easygui.buttonbox("Select Priority", \
+                                            choices=["Completed", \
+                                                    "In Progress", "Blocked"])
+        """
+        The ID = ... will creates a new task ID, having the T as task.
+        Having the current number of Task in the dictionary + 1.
+        """
+        new_task_id = "T" + str(len(Task_Dictionary) + 1)
+        
+        #The new_task cantains all information that the user had input.
+        new_task = {
+            "Title": title,
+            "Description": description,
+            "Assignee": "",
+            "Priority": priority,
+            "Status": status
+        }
 
-    #Asking the user to add a priority variable of the new task.
-    priority = easygui.buttonbox("Select Priority", \
-                                        choices=["1", "2", "3"])
-    
-    #Asking the user to add a status variable of the new task.
-    status = easygui.buttonbox("Select Priority", \
-                                        choices=["Completed", \
-                                                 "In Progress", "Blocked"])
-    """
-    The ID = ... will creates a new task ID, having the T as task.
-    Having the current number of Task in the dictionary + 1.
-    """
-    new_task_id = "T" + str(len(Task_Dictionary) + 1)
-    
-    #The new_task cantains all information that the user had input.
-    new_task = {
-        "Title": title,
-        "Description": description,
-        "Assignee": "",
-        "Priority": priority,
-        "Status": status
-    }
+        #Adding a new task to the Task_Dictionary, with an ID.
+        Task_Dictionary[new_task_id] = new_task
+        
+        easygui.msgbox("New task added with ID: " + new_task_id)
 
-    #Adding a new task to the Task_Dictionary, with an ID.
-    Task_Dictionary[new_task_id] = new_task
-    
-    easygui.msgbox("New task added with ID: " + new_task_id)
+        another_new_task = easygui.buttonbox\
+            ("Do you want to make another task?",\
+             choices=["Yes", "No"])
+        if another_new_task == "No":
+            break
+            
 add_new_task()
+
 """
 Updating a new information to a specific task from the task dictionary.
 The function will allows user to update informations in specific task,
@@ -126,6 +136,5 @@ def update_task():
     update_status = easygui.buttonbox("Select Priority", \
                                         choices=["Completed", \
                                                  "In Progress", "Blocked"])
-update_task()
     
-
+update_task()
