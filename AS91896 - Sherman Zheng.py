@@ -73,7 +73,6 @@ situation, the function will ask the user multiple questions.
 Such as the title, description, priority, status of the new
 created task.
 """
-output = ""
 
 def add_new_task():
     while True:
@@ -109,7 +108,7 @@ def add_new_task():
         #Adding a new task to the Task_Dictionary, with an ID.
         Task_Dictionary[new_task_id] = new_task
         
-        easygui.msgbox("New task added with ID: " + new_task_id)
+        easygui.msgbox(f"New task added with ID: {new_task_id}." )
 
         another_new_task = easygui.buttonbox\
             ("Do you want to make another task?",\
