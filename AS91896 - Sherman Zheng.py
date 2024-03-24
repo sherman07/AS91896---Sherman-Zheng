@@ -67,14 +67,40 @@ Team_Member_Dictionary = {
 
 }
 
+"""
+A main menu that 
+"""
+
 def main_menu():
+    """
+    Allows the user to repeat in the menu page, through the while loop,
+    after the user finish one function.
+    """
     while True:
-        user_choices = easygui.buttonbox("Select the opinion:" [""])
+        #Allows the user to make a choice.
+        user_choices = easygui.buttonbox("Select the opinion:",\
+                                          choices=["Add New Task",\
+                                                    "Update Task","Exit"])
+        """
+        Runs the add new task function in the programme, 
+        if the user click the Add New Task button.
+        """
+        if user_choices == "Add New Task":
+            add_new_task()
+        """
+        Runs the update task function in the programme, 
+        if the user click the Update Task button.
+        """
+        if user_choices == "Update Task":
+            update_task()
+        else:
+            easygui.msgbox("Goodbye")
+            break
 
 
 
 """
-Adding a new task to the project's task dictionary,in this
+Adding a new task to the project's task dictionary, in this
 situation, the function will ask the user multiple questions.
 Such as the title, description, priority, status of the new
 created task.
@@ -123,7 +149,6 @@ def add_new_task():
         if another_new_task == "No":
             break
             
-add_new_task()
 
 """
 Updating a new information to a specific task from the task dictionary.
@@ -143,4 +168,3 @@ def update_task():
                                         choices=["Completed", \
                                                  "In Progress", "Blocked"])
     
-update_task()
