@@ -67,6 +67,12 @@ Team_Member_Dictionary = {
 
 }
 
+def main_menu():
+    while True:
+        user_choices = easygui.buttonbox("Select the opinion:" [""])
+
+
+
 """
 Adding a new task to the project's task dictionary,in this
 situation, the function will ask the user multiple questions.
@@ -110,8 +116,9 @@ def add_new_task():
         
         easygui.msgbox(f"New task added with ID: {new_task_id}." )
 
+        #Asking the user whether or not to make another new task.
         another_new_task = easygui.buttonbox\
-            ("Do you want to make another task?",\
+            ("Do you want to make another new task?",\
              choices=["Yes", "No"])
         if another_new_task == "No":
             break
