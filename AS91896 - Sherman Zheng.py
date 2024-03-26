@@ -90,6 +90,7 @@ def add_new_task():
         priority = easygui.integerbox("Enter the priorty rating (1 - 3):",\
                                       lowerbound= PRIORITY_LOWER_LIMIT, upperbound= PRIORITY_UPPER_LIMIT)
         
+        
         #Asking the user to add a status variable of the new task.
         status = easygui.buttonbox("Select Priority", \
                                             choices=["Completed", \
@@ -118,11 +119,13 @@ def add_new_task():
         another_new_task = easygui.buttonbox\
             ("Do you want to make another new task?",\
              choices=["Yes", "No"])
-        if another_new_task == "Yes":
+        if another_new_task == "No":
             break
 
 """
-A main menu that allows the user to 
+A main menu that allows the user to click the function that they like.
+In this situation, the user will have the oppitunity to select the 
+function they wan tot run.
 """
 
 def main_menu():
