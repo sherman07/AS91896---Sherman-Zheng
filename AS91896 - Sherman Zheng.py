@@ -78,10 +78,10 @@ def output_task_collection():
     output = ""
     for task_id, task_title in Task_Dictionary.items():
         output += f"\nTask ID: {task_id}\n"
-        for task_title, task_info in task_info:
+        for task_title, task_info in task_title.items():
             output += f"{task_title}: {task_info}\n"
 
-            easygui.msgbox(output)
+    easygui.msgbox(output)
 
 
 """
