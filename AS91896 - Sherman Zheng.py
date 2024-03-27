@@ -77,7 +77,7 @@ to look through all task's informations.
 def output_task_collection():
     output = ""
     for task_id, task_info in Task_Dictionary.items():
-        output += f"\n{task_id}:\n"
+        output += f"\nTask ID: {task_id}\n"
 
     for key in task_info:
         output += f"{key}: {task_info[key]}\n"
