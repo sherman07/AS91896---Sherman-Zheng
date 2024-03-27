@@ -80,7 +80,7 @@ def output_task_collection():
         output += f"\n{task_id}:\n"
 
     for key in task_info:
-        output += f"{key}: ${task_info[key]}\n"
+        output += f"{key}: {task_info[key]}\n"
 
         easygui.msgbox(output)
 
