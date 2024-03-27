@@ -136,18 +136,27 @@ def update_task():
             #Asking the user to update a title of the specific task.
             update_title = easygui.enterbox("Enter the title to update:")
 
+            Task_Dictionary[update_task]["Title"] = update_title
+
             #Asking the user to update a description of the specific task.
-            update_description = easygui.enterbox("Enter the description to update:")
+            update_description = easygui.enterbox\
+            ("Enter the description to update:")
+
+            Task_Dictionary[update_task]["Title"] = update_description
 
             #Asking the user to update an assignee of the specific task.
-            update_assignee = easygui.buttonbox("Enter the assignee to update:",\
+            update_assignee = easygui.buttonbox\
+            ("Enter the assignee to update:",\
             choices = ["John Smith (JSM)","Jane Love (JLO)", \
             "Bob Dillion (BDI)"])
 
             #Asking the user to update a priority number of the specific task.
             priority = easygui.integerbox\
             ("Enter the priorty rating (1 - 3) to update:",\
-            lowerbound= PRIORITY_LOWER_LIMIT, upperbound= PRIORITY_UPPER_LIMIT)
+            lowerbound= PRIORITY_LOWER_LIMIT, \
+            upperbound= PRIORITY_UPPER_LIMIT)
+
+            Task_Dictionary[update_assignee]["Title"] = priority
                 
             #Asking the user to update a status of the specific task.
             update_status = easygui.buttonbox("Select Priority", \
@@ -156,7 +165,8 @@ def update_task():
             break
         else:
             easygui.msgbox\
-            ("Task not found, please enter a valid task. e.g.(T1, T2, T3 ...)")
+            ("Task not found, please enter a valid task. \
+            e.g.(T1, T2, T3 ...)")
 
 
 
