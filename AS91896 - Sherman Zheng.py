@@ -90,7 +90,6 @@ def add_new_task():
         priority = easygui.integerbox("Enter the priorty rating (1 - 3):",\
         lowerbound= PRIORITY_LOWER_LIMIT, upperbound= PRIORITY_UPPER_LIMIT)
         
-        
         #Asking the user to add a status variable of the new task.
         status = easygui.buttonbox("Select Priority", \
         choices=["Completed", "In Progress", "Blocked"])
@@ -113,7 +112,7 @@ def add_new_task():
         #Adding a new task to the Task_Dictionary, with an ID.
         Task_Dictionary[new_task_id] = new_task
         
-        easygui.msgbox(f"New task added with ID: {new_task_id}." )
+        easygui.msgbox(f"New task added with ID: {new_task_id}.")
 
         #Asking the user whether or not to make another new task.
         another_new_task = easygui.buttonbox\
@@ -133,34 +132,57 @@ def update_task():
         ("Enter the task to update: e.g.(T1, T2, T3 ...)")
 
         if update_task in Task_Dictionary:
-            #Asking the user to update a title of the specific task.
-            update_title = easygui.enterbox("Enter the title to update:")
+            #Asking the user to update a title of the task.
+            update_title = easygui.enterbox\
+            ("Enter the title to update:")
 
-            Task_Dictionary[update_task]["Title"] = update_title
+            Task_Dictionary[update_task] = update_title
 
-            #Asking the user to update a description of the specific task.
+            #Asking the user to update a description of the task.
             update_description = easygui.enterbox\
             ("Enter the description to update:")
 
-            Task_Dictionary[update_task]["Title"] = update_description
+            Task_Dictionary[update_task] = update_description
 
-            #Asking the user to update an assignee of the specific task.
+            #Asking the user to update an assignee of the task.
             update_assignee = easygui.buttonbox\
             ("Enter the assignee to update:",\
             choices = ["John Smith (JSM)","Jane Love (JLO)", \
             "Bob Dillion (BDI)"])
+            """
+            A for loop to remove the original assignee, and update the new assignee.
+            """
+            for member_id in Team_Member_Dictionary.items():
 
-            #Asking the user to update a priority number of the specific task.
+                if member_id == update_assignee:
+                    original_assignee = Task_Dictionary[update_task]
+
+                    if update_task in Team_Member_Dictionary\
+                    [original_assignee]:
+                        
+                    #Remove the orignial task from the assignee's list
+                        Team_Member_Dictionary[original_assignee]\
+                        .remove(update_task)
+                    Task_Dictionary[update_task] = member_id
+
+                    #Add the task to assignee's list
+                    Team_Member_Dictionary[member_id].append(update_task)
+                    
+
+
+            #Asking the user to update a priority number of the task.
             priority = easygui.integerbox\
             ("Enter the priorty rating (1 - 3) to update:",\
             lowerbound= PRIORITY_LOWER_LIMIT, \
             upperbound= PRIORITY_UPPER_LIMIT)
 
-            Task_Dictionary[update_assignee]["Title"] = priority
+            Task_Dictionary[update_task] = int(priority)
                 
-            #Asking the user to update a status of the specific task.
+            #Asking the user to update a status of the task.
             update_status = easygui.buttonbox("Select Priority", \
             choices=["Completed", "In Progress", "Blocked"])
+
+            Task_Dictionary[update_task] = update_status
 
             break
         else:
