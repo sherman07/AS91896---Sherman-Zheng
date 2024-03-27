@@ -71,6 +71,21 @@ Team_Member_Dictionary = {
 
 }
 """
+Outputting the task collection in a readable format, allows the user
+to look through all task's informations. 
+"""
+def output_task_collection():
+    output = ""
+    for task_id, task_info in Task_Dictionary.items():
+        output += f"\n{task_id}:\n"
+
+    for key in task_info:
+        output += f"{key}: ${task_info[key]}\n"
+
+        easygui.msgbox(output)
+
+
+"""
 Adding a new task to the project's task dictionary, in this
 situation, the function will ask the user multiple questions.
 Such as the title, description, priority, status of the new
@@ -207,8 +222,15 @@ def main_menu():
     """
     while True:
         #Allows the user to make a choice.
-        user_choices = easygui.buttonbox("Select the opinion:",\
-        choices=["Add New Task", "Update Task", "Exit"])
+        user_choices = easygui.buttonbox( "Select the opinion:", \
+        choices=["Output Task Collection", "Add New Task", \
+        "Update Task", "Exit"])
+
+        """
+        Runs the output task collection function in the programme, 
+        if the user click the Output Task Collection button.
+        
+        """
         """
         Runs the add new task function in the programme, 
         if the user click the Add New Task button.
@@ -217,7 +239,9 @@ def main_menu():
         Runs the update task function in the programme, 
         if the user click the Update Task button.
         """
-        if user_choices == "Add New Task":
+        if user_choices == "Output Task Collection":
+            output_task_collection()
+        elif user_choices == "Add New Task":
             add_new_task()
         elif user_choices == "Update Task":
             update_task()
