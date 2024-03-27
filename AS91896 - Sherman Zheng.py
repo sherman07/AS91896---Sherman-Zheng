@@ -76,13 +76,12 @@ to look through all task's informations.
 """
 def output_task_collection():
     output = ""
-    for task_id, task_info in Task_Dictionary.items():
+    for task_id, task_title in Task_Dictionary.items():
         output += f"\nTask ID: {task_id}\n"
+        for task_title, task_info in task_info:
+            output += f"{task_title}: {task_info}\n"
 
-    for key in task_info:
-        output += f"{key}: {task_info[key]}\n"
-
-        easygui.msgbox(output)
+            easygui.msgbox(output)
 
 
 """
