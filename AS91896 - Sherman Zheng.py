@@ -149,8 +149,10 @@ def update_task():
             ("Enter the assignee to update:",\
             choices = ["John Smith (JSM)","Jane Love (JLO)", \
             "Bob Dillion (BDI)"])
+            
             """
-            A for loop to remove the original assignee, and update the new assignee.
+            A for loop to remove the original assignee, 
+            and update the new assignee.
             """
             for member_id in Team_Member_Dictionary.items():
 
