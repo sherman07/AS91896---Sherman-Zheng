@@ -192,7 +192,7 @@ def update_task():
             lowerbound= PRIORITY_LOWER_LIMIT, \
             upperbound= PRIORITY_UPPER_LIMIT)
 
-            Task_Dictionary[update_task] = int(priority)
+            Task_Dictionary[update_task] = str(priority)
                 
             #Asking the user to update a status of the task.
             update_status = easygui.buttonbox("Select Priority", \
