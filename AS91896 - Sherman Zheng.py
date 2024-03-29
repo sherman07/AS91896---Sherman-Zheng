@@ -83,6 +83,14 @@ def output_task_collection():
 
     easygui.msgbox(output)
 
+def output_member_collection():
+    output = ""
+    for member_id, member_title in Team_Member_Dictionary.items():
+        output += f"\nTask ID: {member_id}\n"
+        for member_title, member_info in member_title.items():
+            output += f"{member_title}: {member_info}\n"
+
+    easygui.msgbox(output)
 
 """
 Adding a new task to the project's task dictionary, in this
@@ -202,16 +210,22 @@ def update_task():
             update_status = easygui.buttonbox("Select Priority", \
             choices=["Completed", "In Progress", "Blocked"])
 
-            # Removing the task from the previous assignee's task list if completed
+            """
+            Removing the task from the previous assignee's task list,
+            if completed.
+            """    
             if Task_Dictionary[update_task]["Status"] == "Completed":
                 old_assignee = Task_Dictionary[update_task]["Assignee"]
-                if update_task in Team_Member_Dictionary[old_assignee]["Task Assigned"]:
-                    Team_Member_Dictionary[old_assignee]["Task Assigned"].remove(update_task)
+
+                if update_task in Team_Member_Dictionary[old_assignee]\
+                    ["Task Assigned"]:
+
+                    Team_Member_Dictionary[old_assignee]\
+                    ["Task Assigned"].remove(update_task)
 
             else:
                 #Allows the Dictionary to update "Status" attribute.
                 Task_Dictionary[update_task]["Status"] = update_status
-                continue
 
             #Asking the user whether or not to update another task.
             update_another_task = easygui.buttonbox\
@@ -241,7 +255,7 @@ def main_menu():
         #Allows the user to make a choice.
         user_choices = easygui.buttonbox( "Select the opinion:", \
         choices=["Output Task Collection", "Add New Task", \
-        "Update Task", "Exit"])
+        "Update Task", "Member","Exit"])
 
         """
         Runs the output task collection function in the programme, 
@@ -260,6 +274,8 @@ def main_menu():
             output_task_collection()
         elif user_choices == "Add New Task":
             add_new_task()
+        elif user_choices == "Member":
+            output_member_collection()
         elif user_choices == "Update Task":
             update_task()
         else:
