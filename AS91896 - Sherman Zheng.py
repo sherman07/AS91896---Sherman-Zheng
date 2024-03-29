@@ -57,7 +57,7 @@ Team_Member_Dictionary = {
         "Task Assigned": "[“T1”,“T2”]"
     },
     #Team member Jane Love
-    "JSM": {
+    "JLO": {
         "Name": "Jane Love",
         "Email": "Jane@techvision.com",
         "Task Assigned": "[“T4”]"
@@ -134,6 +134,7 @@ def add_new_task():
             choices=["Yes", "No"])
         if another_new_task == "No":
             break
+
 """
 Updating a new information to a specific task from the task dictionary.
 The function will allows user to update informations in specific task,
@@ -150,13 +151,15 @@ def update_task():
             update_title = easygui.enterbox\
             ("Enter the title to update:")
 
-            Task_Dictionary[update_task] = update_title
+            #Allows the Dictionary to update "Title" attribute. 
+            Task_Dictionary[update_task]["Title"] = update_title
 
             #Asking the user to update a description of the task.
             update_description = easygui.enterbox\
             ("Enter the description to update:")
 
-            Task_Dictionary[update_task] = update_description
+            #Allows the Dictionary to update "Description" attribute. 
+            Task_Dictionary[update_task]["Description"] = update_description
 
             #Asking the user to update an assignee of the task.
             update_assignee = easygui.buttonbox\
@@ -168,23 +171,23 @@ def update_task():
             A for loop to remove the original assignee, 
             and update the new assignee.
             """
-            for member_id in Team_Member_Dictionary.items():
+            for member_id, member_info in Team_Member_Dictionary.items():
 
-                if member_id == update_assignee:
-                    original_assignee = Task_Dictionary[update_task]
+                if member_info["Name"] == update_assignee:
+                    original_assignee = \
+                    Task_Dictionary[update_task]["Assignee"]
 
                     if update_task in Team_Member_Dictionary\
-                    [original_assignee]:
+                    [original_assignee]["Assignee"]:
                         
                     #Remove the orignial task from the assignee's list
-                        Team_Member_Dictionary[original_assignee]\
+                        Team_Member_Dictionary[original_assignee]["Assignee"]\
                         .remove(update_task)
-                    Task_Dictionary[update_task] = member_id
+                    Task_Dictionary[update_task]["Assignee"] = member_id
 
                     #Add the task to assignee's list
-                    Team_Member_Dictionary[member_id].append(update_task)
-                    
-
+                    Team_Member_Dictionary[member_id]["Assignee"].\
+                    append(update_task)
 
             #Asking the user to update a priority number of the task.
             priority = easygui.integerbox\
@@ -192,15 +195,30 @@ def update_task():
             lowerbound= PRIORITY_LOWER_LIMIT, \
             upperbound= PRIORITY_UPPER_LIMIT)
 
-            Task_Dictionary[update_task] = str(priority)
+            #Allows the Dictionary to update "Priority" attribute.
+            Task_Dictionary[update_task]["Priority"] = str(priority)
                 
             #Asking the user to update a status of the task.
             update_status = easygui.buttonbox("Select Priority", \
             choices=["Completed", "In Progress", "Blocked"])
 
-            Task_Dictionary[update_task] = update_status
+            # Removing the task from the previous assignee's task list if completed
+            if Task_Dictionary[update_task]["Status"] == "Completed":
+                old_assignee = Task_Dictionary[update_task]["Assignee"]
+                if update_task in Team_Member_Dictionary[old_assignee]["Task Assigned"]:
+                    Team_Member_Dictionary[old_assignee]["Task Assigned"].remove(update_task)
 
-            break
+            else:
+                #Allows the Dictionary to update "Status" attribute.
+                Task_Dictionary[update_task]["Status"] = update_status
+                continue
+
+            #Asking the user whether or not to update another task.
+            update_another_task = easygui.buttonbox\
+                ("Do you want to update another new task?",\
+                choices=["Yes", "No"])
+            if update_another_task == "No":
+                break
         else:
             easygui.msgbox\
             ("Task not found, please enter a valid task. \
@@ -248,3 +266,4 @@ def main_menu():
             easygui.msgbox("Goodbye")
             break
 main_menu()
+
