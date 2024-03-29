@@ -86,7 +86,7 @@ def output_task_collection():
 def output_member_collection():
     output = ""
     for member_id, member_title in Team_Member_Dictionary.items():
-        output += f"\nTask ID: {member_id}\n"
+        output += f"\nMember ID: {member_id}\n"
         for member_title, member_info in member_title.items():
             output += f"{member_title}: {member_info}\n"
 
