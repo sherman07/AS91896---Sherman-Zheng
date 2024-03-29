@@ -217,8 +217,6 @@ def update_task():
             ("Task not found, please enter a valid task. \
             e.g.(T1, T2, T3 ...)")
 
-
-
 """
 A main menu that allows the user to click the function that they like.
 In this situation, the user will have the oppitunity to select the 
