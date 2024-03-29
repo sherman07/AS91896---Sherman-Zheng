@@ -166,8 +166,12 @@ def update_task():
             """    
             if Task_Dictionary[update_task]["Status"] == "Completed":
                 old_assignee = Task_Dictionary[update_task]["Assignee"]
-                if update_task in Team_Member_Dictionary[old_assignee]["Task Assigned"]:
-                    Team_Member_Dictionary[old_assignee]["Task Assigned"].remove(update_task)
+
+                if update_task in Team_Member_Dictionary[old_assignee]\
+                    ["Task Assigned"]:
+
+                    Team_Member_Dictionary[old_assignee]\
+                    ["Task Assigned"].remove(update_task)
 
             else:
                 #Allows the Dictionary to update "Status" attribute.
@@ -208,11 +212,12 @@ def update_task():
             
             if update_another_task == "No":
                 break
-            
         else:
             easygui.msgbox\
             ("Task not found, please enter a valid task. \
             e.g.(T1, T2, T3 ...)")
+
+
 
 """
 A main menu that allows the user to click the function that they like.
