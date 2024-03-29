@@ -196,14 +196,14 @@ def update_task():
                     if update_task in Team_Member_Dictionary\
                     [original_assignee]["Assignee"]:
                         
-                    #Remove the orignial task from the assignee's list
+                        #Remove the orignial task from the assignee's list
                         Team_Member_Dictionary[original_assignee]["Assignee"]\
                         .remove(update_task)
-                    Task_Dictionary[update_task]["Assignee"] = member_id
+                        Task_Dictionary[update_task]["Assignee"] = member_id
 
-                    #Add the task to assignee's list
-                    Team_Member_Dictionary[member_id]["Assignee"].\
-                    append(update_task)
+                        #Add the task to assignee's list
+                        Team_Member_Dictionary[member_id]["Assignee"].\
+                        append(update_task)
 
             #Asking the user whether or not to update another task.
             update_another_task = easygui.buttonbox\
@@ -261,4 +261,3 @@ def main_menu():
             easygui.msgbox("Goodbye")
             break
 main_menu()
-
