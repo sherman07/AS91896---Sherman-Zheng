@@ -173,8 +173,9 @@ def update_task():
                     Team_Member_Dictionary[old_assignee]\
                     ["Task Assigned"].remove(update_task)
 
+            else:
                 #Allows the Dictionary to update "Status" attribute.
-            Task_Dictionary[update_task]["Status"] = update_status
+                Task_Dictionary[update_task]["Status"] = update_status
 
             #Asking the user to update an assignee of the task.
             update_assignee = easygui.buttonbox\
