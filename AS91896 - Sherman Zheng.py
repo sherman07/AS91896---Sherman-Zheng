@@ -158,7 +158,7 @@ def update_task():
                 
             #Asking the user to update a status of the task.
             update_status = easygui.buttonbox("Select Priority", \
-            choices=["Completed", "In Progress", "Blocked"])
+            choices=["Completed", "In Progress", "Blocked", "Not Started"])
 
             """
             Removing the task from the previous assignee's task list,
@@ -172,6 +172,7 @@ def update_task():
 
                     Team_Member_Dictionary[old_assignee]\
                     ["Task Assigned"].remove(update_task)
+                Task_Dictionary[update_task]["Status"] = update_status
 
             else:
                 #Allows the Dictionary to update "Status" attribute.
