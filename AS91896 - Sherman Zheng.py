@@ -50,26 +50,24 @@ Task_Dictionary = {
 }
 #The Team Member Dictionary that stores the information of all member.
 Team_Member_Dictionary = {
-    #Team member Jone Smith
     "JSM": {
         "Name": "Jone Smith",
         "Email": "John@techvision.com",
-        "Task Assigned": "[“T1”,“T2”]"
+        "Task Assigned": ["T1", "T2"]
     },
-    #Team member Jane Love
     "JLO": {
         "Name": "Jane Love",
         "Email": "Jane@techvision.com",
-        "Task Assigned": "[“T4”]"
+        "Task Assigned": ["T4"]
     },
-    #Team member Bob Dillon
     "BDI": {
         "Name": "Bob Dillon",
         "Email": "Bob@techvision.com",
-        "Task Assigned": "[“T5”]"
+        "Task Assigned": ["T5"]
     }
-
 }
+
+
 """
 Outputting the task collection in a readable format, allows the user
 to look through all task's informations. 
@@ -155,47 +153,27 @@ def update_task():
         ("Enter the task to update: e.g.(T1, T2, T3 ...)")
 
         if update_task in Task_Dictionary:
-                
-            #Asking the user to update a status of the task.
-            update_status = easygui.buttonbox("Select Priority", \
-            choices=["Completed", "In Progress", "Blocked", "Not Started"])
+            status = easygui.buttonbox("Select the new task status:", choices=["In Progress", "Completed", "Blocked", "Not Started"])
+            Task_Dictionary[update_task]["Status"] = status
 
-            """
-            Removing the task from the previous assignee's task list,
-            if completed.
-            """    
-            if Task_Dictionary[update_task]["Status"] == "Completed":
-                old_assignee = Task_Dictionary[update_task]["Assignee"]
+            assignee = easygui.enterbox("Enter the name of the assignee (JSM, JLO, or BDI):")
 
-                if update_task in Team_Member_Dictionary[old_assignee]\
-                    ["Task Assigned"]:
+            # Check if the assignee exists in the Team_Member_Dictionary
+            if assignee in Team_Member_Dictionary:
+                # Add the task to the team member's task list
+                if update_task not in Team_Member_Dictionary[assignee]["Task Assigned"]:
+                    Team_Member_Dictionary[assignee]["Task Assigned"].append(update_task)
+                # Remove the task from the assignee's task list if it's completed
+                if status == "Completed" and update_task in Team_Member_Dictionary[Task_Dictionary[update_task]["Assignee"]]["Task Assigned"]:
+                    Team_Member_Dictionary[Task_Dictionary[update_task]["Assignee"]]["Task Assigned"].remove(update_task)
 
-                    Team_Member_Dictionary[old_assignee]\
-                    ["Task Assigned"].remove(update_task)
-                Task_Dictionary[update_task]["Status"] = update_status
-
+                easygui.msgbox(f"Task {update_task} has been assigned to {assignee} and status updated to {status}.")
             else:
-                #Allows the Dictionary to update "Status" attribute.
-                Task_Dictionary[update_task]["Status"] = update_status
-
-            #Asking the user to update an assignee of the task.
-            update_assignee = easygui.buttonbox\
-            ("Enter the assignee to update:",\
-            choices = ["JSM","JLO", "BDI"])
-
-            Task_Dictionary[update_task]["Assignee"] = update_assignee
-
-            #Asking the user whether or not to update another task.
-            update_another_task = easygui.buttonbox\
-                ("Do you want to update another new task?",\
-                choices=["Yes", "No"])
-            
-            if update_another_task == "No":
-                break
+                easygui.msgbox("The assignee does not exist in the Team Member Dictionary. Please check the spelling and try again.")
         else:
             easygui.msgbox\
             ("Task not found, please enter a valid task. \
-            e.g.(T1, T2, T3 ...)")
+                e.g.(T1, T2, T3 ...)")
 
 """
 A main menu that allows the user to click the function that they like.
