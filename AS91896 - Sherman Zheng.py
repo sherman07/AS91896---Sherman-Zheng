@@ -33,7 +33,7 @@ Task_Dictionary = {
     #Task 4
     "T4": {
         "Title": "Add payment processing",
-        "Description": "Implement payment processing for website",
+        "Description": "Implement payment processing for the website",
         "Assignee": "JLO",
         "Priority": "2",
         "Status": "In Progress"
@@ -173,37 +173,15 @@ def update_task():
                     Team_Member_Dictionary[old_assignee]\
                     ["Task Assigned"].remove(update_task)
 
-            else:
                 #Allows the Dictionary to update "Status" attribute.
-                Task_Dictionary[update_task]["Status"] = update_status
+            Task_Dictionary[update_task]["Status"] = update_status
 
             #Asking the user to update an assignee of the task.
             update_assignee = easygui.buttonbox\
             ("Enter the assignee to update:",\
-            choices = ["John Smith (JSM)","Jane Love (JLO)", \
-            "Bob Dillion (BDI)"])
-            
-            """
-            A for loop to remove the original assignee, 
-            and update the new assignee.
-            """
-            for member_id, member_info in Team_Member_Dictionary.items():
+            choices = ["JSM","JLO", "BDI"])
 
-                if member_info["Name"] == update_assignee:
-                    original_assignee = \
-                    Task_Dictionary[update_task]["Assignee"]
-
-                    if update_task in Team_Member_Dictionary\
-                    [original_assignee]["Assignee"]:
-                        
-                        #Remove the orignial task from the assignee's list
-                        Team_Member_Dictionary[original_assignee]["Assignee"]\
-                        .remove(update_task)
-                        Task_Dictionary[update_task]["Assignee"] = member_id
-
-                        #Add the task to assignee's list
-                        Team_Member_Dictionary[member_id]["Assignee"].\
-                        append(update_task)
+            Task_Dictionary[update_task]["Assignee"] = update_assignee
 
             #Asking the user whether or not to update another task.
             update_another_task = easygui.buttonbox\
