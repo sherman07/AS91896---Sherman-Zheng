@@ -67,20 +67,6 @@ Team_Member_Dictionary = {
     }
 }
 
-
-"""
-Outputting the task collection in a readable format, allows the user
-to look through all task's informations. 
-"""
-def output_task_collection():
-    output = ""
-    for task_id, task_title in Task_Dictionary.items():
-        output += f"\nTask ID: {task_id}\n"
-        for task_title, task_info in task_title.items():
-            output += f"{task_title}: {task_info}\n"
-
-    easygui.msgbox(output)
-
 def output_member_collection():
     output = ""
     for member_id, member_title in Team_Member_Dictionary.items():
@@ -112,7 +98,7 @@ def add_new_task():
         
         #Asking the user to add a status variable of the new task.
         status = easygui.buttonbox("Select Priority", \
-        choices=["Completed", "In Progress", "Blocked"])
+        choices=["Completed", "In Progress", "Blocked", "Not Started"])
 
         """
         The ID = ... will creates a new task ID, having the T as task.
@@ -124,7 +110,7 @@ def add_new_task():
         new_task = {
             "Title": title,
             "Description": description,
-            "Assignee": "",
+            "Assignee": None,
             "Priority": priority,
             "Status": status
         }
@@ -148,37 +134,153 @@ which is from the task dictionary.
 """
 def update_task():
     while True:
+
         #Asking the user to update one task from the dictionary.
         update_task = easygui.enterbox\
         ("Enter the task to update: e.g.(T1, T2, T3 ...)")
 
+        #If the task can be identified in the Task Dictionary.
         if update_task in Task_Dictionary:
-            status = easygui.buttonbox("Select the new task status:", choices=["In Progress", "Completed", "Blocked", "Not Started"])
-            Task_Dictionary[update_task]["Status"] = status
 
-            assignee = easygui.enterbox("Enter the name of the assignee (JSM, JLO, or BDI):")
+        #Asking the user to update the task status.
+            update_status = easygui.buttonbox("Select the new task status:",\
+            choices=["Completed", "In Progress", "Blocked", "Not Started"])
 
-            # Check if the assignee exists in the Team_Member_Dictionary
-            if assignee in Team_Member_Dictionary:
-                # Add the task to the team member's task list
-                if update_task not in Team_Member_Dictionary[assignee]["Task Assigned"]:
-                    Team_Member_Dictionary[assignee]["Task Assigned"].append(update_task)
-                # Remove the task from the assignee's task list if it's completed
-                if status == "Completed" and update_task in Team_Member_Dictionary[Task_Dictionary[update_task]["Assignee"]]["Task Assigned"]:
-                    Team_Member_Dictionary[Task_Dictionary[update_task]["Assignee"]]["Task Assigned"].remove(update_task)
+        #Update the task status to the Task Dictionary.
+            Task_Dictionary[update_task]["Status"] = update_status
 
-                easygui.msgbox(f"Task {update_task} has been assigned to {assignee} and status updated to {status}.")
+        #Asking the user to update the task assignee.
+            update_assignee = easygui.enterbox\
+            (f"Enter the name of the assignee you would like to update for \
+            {update_task}(JSM, JLO, or BDI):")
+
+        #Check if the assignee is exist in the Team Member Dictionary.
+            if update_assignee in Team_Member_Dictionary:
+                    
+        #Add the task to the team member's task list.
+                    if update_task not in Team_Member_Dictionary\
+                        [update_assignee]["Task Assigned"]:
+
+                        Team_Member_Dictionary[update_assignee]\
+                        ["Task Assigned"].append(update_task)
+
+        #Remove the task from the assignee's task list if it's completed
+                    if update_status == "Completed" and update_task in \
+                    Team_Member_Dictionary[Task_Dictionary[update_task]\
+                    ["Assignee"]]["Task Assigned"]:
+                        
+        #Remove the Completed task from the Team Member Dictionary.
+                        Team_Member_Dictionary[Task_Dictionary[update_task]\
+                        ["Assignee"]]["Task Assigned"].remove(update_task)
+
+                    easygui.msgbox(f"Task {update_task} has been updated")
+
+        #Asking the user whether or not to update another task.
+                    update_another_task = easygui.buttonbox\
+                        ("Do you want to update another new task?",\
+                        choices=["Yes", "No"])
+                    
+                    if update_another_task == "No":
+                        break
             else:
-                easygui.msgbox("The assignee does not exist in the Team Member Dictionary. Please check the spelling and try again.")
+                easygui.msgbox\
+                ("Task not found, please enter a valid task.")
         else:
             easygui.msgbox\
-            ("Task not found, please enter a valid task. \
-                e.g.(T1, T2, T3 ...)")
+            ("Task not found, please enter a valid task.")
+            
+"""
+Search function will allows user to search a specific task or member.
+In this situation, the programme provide two choices for user to click,
+Task and Member. Then the user will able to choose the specific task or
+member to search on.
+"""
+def search_task_member():
+    while True:
 
+        #Asking the user to search for one choice, from Task or Member.
+        search_task_or_member = easygui.buttonbox\
+        ("Do you want search for a Task or Member", \
+        choices= ["Task", "Member"])
+
+        #If the choice is Task...
+        if search_task_or_member == "Task":
+            task_output = "" 
+            task_catogories = [] 
+            task_title = "Task Search" 
+            task_msg = "Click on the Task you would like displayed" 
+
+        #Adding the Task List from the Task Dictionary to a list.
+            for task_list in Task_Dictionary: 
+                task_catogories.append(task_list)
+
+        #easygui.msgbox(task_catogories) 
+            search_task_member = easygui.buttonbox\
+            (task_msg, task_title, task_catogories) 
+
+            for tasks in Task_Dictionary[search_task_member]: 
+                task_output += \
+                f"\n{tasks}: {Task_Dictionary[search_task_member][tasks]}" 
+
+            easygui.msgbox(task_output) 
+
+        #If the choice is Member...   
+        if search_task_or_member == "Member":
+            member_output = ""
+            member_categories = []
+            member_title = "Category Search"
+            member_msg = "Click on the Member you would like displayed" 
+
+        #Adding the Member List from the Team Member Dictionary to a list.
+            for member_list in Team_Member_Dictionary: 
+                member_categories.append(member_list) 
+
+        #easygui.msgbox(member_catogories) 
+            search_task_member = easygui.buttonbox\
+            (member_msg, member_title, member_categories) 
+
+            for members in Team_Member_Dictionary[search_task_member]: 
+                member_output +=\
+                f"\n{members}: {Team_Member_Dictionary[search_task_member]\
+                [members]}" 
+
+            easygui.msgbox(member_output) 
+
+        #Asking the user whether or not to search for another Task/Member.
+        search_another_task = easygui.buttonbox\
+                        ("Do you want to search another new task/member?",\
+                        choices=["Yes", "No"])
+                    
+        if search_another_task == "No":
+                        break
+        
+"""
+Outputting the task collection in a readable format, allows the user
+to look through all task's informations. 
+"""
+def output_task_collection():
+
+    #An empty string to store new informations.
+    task_output = ""
+
+    #Loop through task ID and title in the Task_Dictionary.
+    for task_id, task_title in Task_Dictionary.items():
+    #Add informations in to the empty task_output.
+        task_output += f"\nTask ID: {task_id}\n"
+
+    #Loop through task title and info in the task_title dictionary.
+        for task_title, task_info in task_title.items():
+    #Add informations in to the empty task_output.
+            task_output += f"{task_title}: {task_info}\n"
+            
+    #Display the task collection through easygui message box.
+    easygui.msgbox(task_output)
+     
+        
 """
 A main menu that allows the user to click the function that they like.
 In this situation, the user will have the oppitunity to select the 
-function they wan tot run.
+function they want to run.
 """
 
 def main_menu():
@@ -190,12 +292,11 @@ def main_menu():
         #Allows the user to make a choice.
         user_choices = easygui.buttonbox( "Select the opinion:", \
         choices=["Output Task Collection", "Add New Task", \
-        "Update Task", "Member","Exit"])
+        "Update Task", "Member","Search Task or Member","Exit"])
 
         """
         Runs the output task collection function in the programme, 
         if the user click the Output Task Collection button.
-        
         """
         """
         Runs the add new task function in the programme, 
@@ -205,6 +306,10 @@ def main_menu():
         Runs the update task function in the programme, 
         if the user click the Update Task button.
         """
+        """
+        Runs the search task or member function in the programme, 
+        if the user click the Search Task or Member button.
+        """
         if user_choices == "Output Task Collection":
             output_task_collection()
         elif user_choices == "Add New Task":
@@ -213,6 +318,8 @@ def main_menu():
             output_member_collection()
         elif user_choices == "Update Task":
             update_task()
+        elif user_choices == "Search Task or Member":
+            search_task_member()
         else:
             easygui.msgbox("Goodbye")
             break
