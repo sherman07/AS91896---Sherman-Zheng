@@ -163,8 +163,10 @@ def update_task():
 
                         Team_Member_Dictionary[update_assignee]\
                         ["Task Assigned"].append(update_task)
+                    
+                    Task_Dictionary[update_task]["Assignee"] = update_assignee
 
-        #Remove the task from the assignee's task list if it's completed
+        #Remove the task from the assignee's task list if is completed.
                     if update_status == "Completed" and update_task in \
                     Team_Member_Dictionary[Task_Dictionary[update_task]\
                     ["Assignee"]]["Task Assigned"]:
@@ -172,6 +174,8 @@ def update_task():
         #Remove the Completed task from the Team Member Dictionary.
                         Team_Member_Dictionary[Task_Dictionary[update_task]\
                         ["Assignee"]]["Task Assigned"].remove(update_task)
+                    
+                    Task_Dictionary[update_task]["Assignee"] = update_assignee
 
                     easygui.msgbox(f"Task {update_task} has been updated")
 
