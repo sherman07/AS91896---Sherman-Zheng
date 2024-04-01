@@ -258,6 +258,15 @@ def search_task_member():
         if search_another_task == "No":
                         break
         
+def generate_report():
+    num_completed = 0
+    num_in_progress = 0
+    num_in_blocked = 0
+    num_not_startes = 0
+
+    
+
+
 """
 Outputting the task collection in a readable format, allows the user
 to look through all task's informations. 
