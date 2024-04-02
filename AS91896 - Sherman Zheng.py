@@ -67,13 +67,13 @@ Team_Member_Dictionary = {
     }
 }
 
+
 """
 Adding a new task to the project's task dictionary, in this
 situation, the function will ask the user multiple questions.
 Such as the title, description, priority, status of the new
 created task.
 """
-
 def add_new_task():
     while True:
 
@@ -129,6 +129,7 @@ def add_new_task():
             choices=["Yes", "No"])
         if another_new_task == "No":
             break
+
 
 """
 Updating a new information to a specific task from the task dictionary.
@@ -199,6 +200,7 @@ def update_task():
         else:
             easygui.msgbox\
             ("Task not found, please enter a valid task.")
+
             
 """
 Search function will allows user to search a specific task or member.
@@ -267,6 +269,11 @@ def search_task_member():
         if search_another_task == "No":
             break
         
+        
+"""
+Generate out the current task status, this allows the user to have a 
+view of the current task progress.
+"""
 def generate_report():
     while True:
 
@@ -308,10 +315,8 @@ def generate_report():
                     
         if search_another_report == "No":
             break
+
         
-
-
-
 """
 Outputting the task collection in a readable format, allows the user
 to look through all task's informations. 
@@ -340,7 +345,6 @@ A main menu that allows the user to click the function that they like.
 In this situation, the user will have the oppitunity to select the 
 function they want to run.
 """
-
 def main_menu():
     """
     Allows the user to repeat in the menu page, through the while loop,
