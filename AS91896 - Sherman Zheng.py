@@ -272,7 +272,7 @@ def search_task_member():
         
 """
 Generate out the current task status, this allows the user to have a 
-view of the current task progress.
+view of the current tasks progress.
 """
 def generate_report():
     while True:
