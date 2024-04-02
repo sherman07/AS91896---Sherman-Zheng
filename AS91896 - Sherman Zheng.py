@@ -123,7 +123,7 @@ def add_new_task():
         
         easygui.msgbox(f"New task added with ID: {new_task_id}.")
 
-        #Asking the user whether or not to make another new task.
+        #Ask the user whether or not to make another new task.
         another_new_task = easygui.buttonbox\
             ("Do you want to make another new task?",\
             choices=["Yes", "No"])
@@ -191,7 +191,7 @@ def update_task():
 
             easygui.msgbox(f"Task {update_task} has been updated")
 
-        #Asking the user whether or not to update another task.
+        #Ask the user whether or not to update another task.
             update_another_task = easygui.buttonbox\
                         ("Do you want to update another new task?",\
                         choices=["Yes", "No"])
@@ -262,7 +262,7 @@ def search_task_member():
 
             easygui.msgbox(member_output) 
 
-        #Asking the user whether or not to search another Task/Member.
+        #Ask the user whether or not to search another Task/Member.
         search_another_task = easygui.buttonbox\
         ("Do you want to search another new task/member?",\
         choices=["Yes", "No"])
@@ -309,7 +309,7 @@ def generate_report():
         #Display the report, through message box.
         easygui.msgbox(generate_task_status_report)
 
-        #Asking the user whether or not to generate report again.
+        #Ask the user whether or not to generate report again.
         search_another_report = easygui.buttonbox\
         ("Do you want to generate another task status report?",\
         choices=["Yes", "No"])
@@ -341,7 +341,7 @@ def output_task_collection():
         #Display the task collection through easygui message box.
         easygui.msgbox(task_output)
 
-    #Asking the user whether or not to output task collection again.
+        #Ask the user whether or not to output task collection again.
         output_task_collection_again = easygui.buttonbox\
         ("Do you want to  output task collection again?",\
         choices=["Yes", "No"])
