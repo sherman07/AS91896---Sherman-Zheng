@@ -354,14 +354,10 @@ def main_menu():
 
         #Allows the user to make a choice.
         user_choices = easygui.buttonbox( "Select One Option:", \
-        choices=["Output Task Collection", "Add New Task", \
+        choices=["Add New Task", \
         "Update Task", "Search Task or Member",\
-        "Generate Task Report","Exit"])
+        "Generate Task Report", "Output Task Collection", "Exit"])
 
-        """
-        Runs the output task collection function in the programme, 
-        if the user click the Output Task Collection button.
-        """
         """
         Runs the add new task function in the programme, 
         if the user click the Add New Task button.
@@ -378,10 +374,12 @@ def main_menu():
         Runs the generate task report function in the programme, 
         if the user click the Generate Task Report button.
         """
+        """
+        Runs the output task collection function in the programme, 
+        if the user click the Output Task Collection button.
+        """
         #Stop the programme, if the user click Exit button.
-        if user_choices == "Output Task Collection":
-            output_task_collection()
-        elif user_choices == "Add New Task":
+        if user_choices == "Add New Task":
             add_new_task()
         elif user_choices == "Update Task":
             update_task()
@@ -389,6 +387,8 @@ def main_menu():
             search_task_member()
         elif user_choices == "Generate Task Report":
             generate_report()
+        elif user_choices == "Output Task Collection":
+            output_task_collection()
         else:
             easygui.msgbox("Goodbye")
             break
