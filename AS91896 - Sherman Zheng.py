@@ -254,19 +254,49 @@ def search_task_member():
 
         #Asking the user whether or not to search another Task/Member.
         search_another_task = easygui.buttonbox\
-                        ("Do you want to search another new task/member?",\
-                        choices=["Yes", "No"])
+        ("Do you want to search another new task/member?",\
+        choices=["Yes", "No"])
                     
         if search_another_task == "No":
-                        break
+            break
         
 def generate_report():
-    num_completed = 0
-    num_in_progress = 0
-    num_in_blocked = 0
-    num_not_startes = 0
+    while True:
+        num_completed = 0
+        num_in_progress = 0
+        num_in_blocked = 0
+        num_not_started = 0
 
-    
+        for task in Task_Dictionary.values():
+            task_status = task["Status"]
+            if task_status == "Completed":
+                num_completed += 1
+
+            elif task_status == "In Progress":
+                num_in_progress += 1
+
+            elif task_status == "In Blocked":
+                num_in_blocked += 1
+
+            elif task_status == "Not Started":
+                num_not_started += 1
+
+        generate_task_status_report = f"Project Progress Report:\
+        \n\nCompleted Tasks: {num_completed}\
+        \nIn Progress Tasks: {num_in_progress}\
+        \nBlocked Tasks: {num_in_blocked}\
+        \nNot Started Tasks: {num_not_started}"
+
+        easygui.msgbox(generate_task_status_report)
+
+        search_another_report = easygui.buttonbox\
+        ("Do you want to generate another task status report?",\
+        choices=["Yes", "No"])
+                    
+        if search_another_report == "No":
+            break
+        
+
 
 
 """
@@ -307,7 +337,8 @@ def main_menu():
         #Allows the user to make a choice.
         user_choices = easygui.buttonbox( "Select the opinion:", \
         choices=["Output Task Collection", "Add New Task", \
-        "Update Task", "Member","Search Task or Member","Exit"])
+        "Update Task", "Member","Search Task or Member",\
+        "Generate Task Report","Exit"])
 
         """
         Runs the output task collection function in the programme, 
@@ -325,6 +356,11 @@ def main_menu():
         Runs the search task or member function in the programme, 
         if the user click the Search Task or Member button.
         """
+        """
+        Runs the generate task report function in the programme, 
+        if the user click the Generate Task Report button.
+        """
+        #Stop the programme, if the user click Exit button.
         if user_choices == "Output Task Collection":
             output_task_collection()
         elif user_choices == "Add New Task":
@@ -335,6 +371,8 @@ def main_menu():
             update_task()
         elif user_choices == "Search Task or Member":
             search_task_member()
+        elif user_choices == "Generate Task Report":
+            generate_report()
         else:
             easygui.msgbox("Goodbye")
             break
