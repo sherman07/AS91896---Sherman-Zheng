@@ -67,15 +67,6 @@ Team_Member_Dictionary = {
     }
 }
 
-def output_member_collection():
-    output = ""
-    for member_id, member_title in Team_Member_Dictionary.items():
-        output += f"\nMember ID: {member_id}\n"
-        for member_title, member_info in member_title.items():
-            output += f"{member_title}: {member_info}\n"
-
-    easygui.msgbox(output)
-
 """
 Adding a new task to the project's task dictionary, in this
 situation, the function will ask the user multiple questions.
@@ -335,9 +326,9 @@ def main_menu():
     """
     while True:
         #Allows the user to make a choice.
-        user_choices = easygui.buttonbox( "Select the opinion:", \
+        user_choices = easygui.buttonbox( "Select One Option:", \
         choices=["Output Task Collection", "Add New Task", \
-        "Update Task", "Member","Search Task or Member",\
+        "Update Task", "Search Task or Member",\
         "Generate Task Report","Exit"])
 
         """
@@ -365,8 +356,6 @@ def main_menu():
             output_task_collection()
         elif user_choices == "Add New Task":
             add_new_task()
-        elif user_choices == "Member":
-            output_member_collection()
         elif user_choices == "Update Task":
             update_task()
         elif user_choices == "Search Task or Member":
