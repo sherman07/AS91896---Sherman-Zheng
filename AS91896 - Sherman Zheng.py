@@ -253,11 +253,14 @@ def search_task_member():
         
 def generate_report():
     while True:
+
+        #The default counters for different task statuses.
         num_completed = 0
         num_in_progress = 0
         num_in_blocked = 0
         num_not_started = 0
 
+        #Repeat over tasks to count different statuses
         for task in Task_Dictionary.values():
             task_status = task["Status"]
             if task_status == "Completed":
@@ -272,14 +275,17 @@ def generate_report():
             elif task_status == "Not Started":
                 num_not_started += 1
 
+        #Generate the report.
         generate_task_status_report = f"Project Progress Report:\
         \n\nCompleted Tasks: {num_completed}\
         \nIn Progress Tasks: {num_in_progress}\
         \nBlocked Tasks: {num_in_blocked}\
         \nNot Started Tasks: {num_not_started}"
 
+        #Display the report, through message box.
         easygui.msgbox(generate_task_status_report)
 
+        #Asking the user whether or not to generate report again.
         search_another_report = easygui.buttonbox\
         ("Do you want to generate another task status report?",\
         choices=["Yes", "No"])
