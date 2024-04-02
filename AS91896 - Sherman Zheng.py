@@ -127,6 +127,7 @@ def add_new_task():
         another_new_task = easygui.buttonbox\
             ("Do you want to make another new task?",\
             choices=["Yes", "No"])
+        
         if another_new_task == "No":
             break
 
@@ -322,23 +323,31 @@ Outputting the task collection in a readable format, allows the user
 to look through all task's informations. 
 """
 def output_task_collection():
+    while True:
 
-    #An empty string to store new informations.
-    task_output = ""
+        #An empty string to store new informations.
+        task_output = ""
 
-    #Loop through task ID and title in the Task_Dictionary.
-    for task_id, task_title in Task_Dictionary.items():
-    #Add informations in to the empty task_output.
-        task_output += f"\nTask ID: {task_id}\n"
+        #Loop through task ID and title in the Task_Dictionary.
+        for task_id, task_title in Task_Dictionary.items():
+        #Add informations in to the empty task_output.
+            task_output += f"\nTask ID: {task_id}\n"
 
-    #Loop through task title and info in the task_title dictionary.
-        for task_title, task_info in task_title.items():
-    #Add informations in to the empty task_output.
-            task_output += f"{task_title}: {task_info}\n"
-            
-    #Display the task collection through easygui message box.
-    easygui.msgbox(task_output)
-     
+        #Loop through task title and info in the task_title dictionary.
+            for task_title, task_info in task_title.items():
+        #Add informations in to the empty task_output.
+                task_output += f"{task_title}: {task_info}\n"
+                
+        #Display the task collection through easygui message box.
+        easygui.msgbox(task_output)
+
+    #Asking the user whether or not to output task collection again.
+        output_task_collection_again = easygui.buttonbox\
+        ("Do you want to  output task collection again?",\
+        choices=["Yes", "No"])
+                    
+        if output_task_collection_again == "No":
+            break
         
 """
 A main menu that allows the user to click the function that they like.
