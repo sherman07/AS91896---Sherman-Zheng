@@ -51,7 +51,7 @@ Task_Dictionary = {
 #The Team Member Dictionary that stores the information of all member.
 Team_Member_Dictionary = {
     "JSM": {
-        "Name": "Jone Smith",
+        "Name": "John Smith",
         "Email": "John@techvision.com",
         "Task Assigned": ["T1", "T2"]
     },
