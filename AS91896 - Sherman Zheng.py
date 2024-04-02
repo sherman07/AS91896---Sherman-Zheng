@@ -101,7 +101,7 @@ def add_new_task():
         new_task = {
             "Title": title,
             "Description": description,
-            "Assignee": None,
+            "Assignee": "",
             "Priority": priority,
             "Status": status
         }
@@ -331,6 +331,7 @@ def main_menu():
     after the user finish one function.
     """
     while True:
+
         #Allows the user to make a choice.
         user_choices = easygui.buttonbox( "Select One Option:", \
         choices=["Output Task Collection", "Add New Task", \
