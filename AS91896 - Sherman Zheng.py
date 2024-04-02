@@ -101,7 +101,7 @@ def add_new_task():
         new_task = {
             "Title": title,
             "Description": description,
-            "Assignee": "",
+            "Assignee": None,
             "Priority": priority,
             "Status": status
         }
