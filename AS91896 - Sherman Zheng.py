@@ -80,12 +80,24 @@ def add_new_task():
         #Asking the user to add a title variable of the new task.
         title = easygui.enterbox("Enter the title of the task:")
 
+        #Stop the add_new_task fuction, if the user click cancel.
+        if title == None:
+             break
+
         #Asking the user to add a description variable of the new task.
         description = easygui.enterbox("Enter the description of the task:")
+
+        #Stop the add_new_task fuction, if the user click cancel.
+        if description == None:
+             break
 
         #Asking the user to add a priority variable of the new task.
         priority = easygui.integerbox("Enter the priorty rating (1 - 3):",\
         lowerbound= PRIORITY_LOWER_LIMIT, upperbound= PRIORITY_UPPER_LIMIT)
+
+        #Stop the add_new_task fuction, if the user click cancel.
+        if priority == None:
+             break
         
         #Asking the user to add a status variable of the new task.
         status = easygui.buttonbox("Select Priority", \
@@ -129,6 +141,10 @@ def update_task():
         #Asking the user to update one task from the dictionary.
         update_task = easygui.enterbox\
         ("Enter the task to update: e.g.(T1, T2, T3 ...)")
+
+        #Stop the update_task fuction, if the user click cancel.
+        if update_task == None:
+             break
 
         #If the task can be identified in the Task Dictionary.
         if update_task in Task_Dictionary:
@@ -206,7 +222,7 @@ def search_task_member():
             task_title = "Task Search" 
             task_msg = "Click on the Task you would like displayed" 
 
-        #Adding the Task List from the Task Dictionary to a list.
+        #Adding the Task List from Task Dictionary to a list.
             for task_list in Task_Dictionary: 
                 task_catogories.append(task_list)
 
@@ -226,9 +242,9 @@ def search_task_member():
             member_output = ""
             member_categories = []
             member_title = "Category Search"
-            member_msg = "Click on the Member you would like displayed" 
+            member_msg = "Click on the Member you would like displayed"
 
-        #Adding the Member List from the Team Member Dictionary to a list.
+        #Adding the Member List from Team Member Dictionary to a list.
             for member_list in Team_Member_Dictionary: 
                 member_categories.append(member_list) 
 
@@ -269,7 +285,7 @@ def generate_report():
             elif task_status == "In Progress":
                 num_in_progress += 1
 
-            elif task_status == "In Blocked":
+            elif task_status == "Blocked":
                 num_in_blocked += 1
 
             elif task_status == "Not Started":
