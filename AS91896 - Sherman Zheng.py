@@ -257,8 +257,8 @@ def search_task_member():
 
             for members in Team_Member_Dictionary[search_task_member]: 
                 member_output +=\
-                f"\n{members}: {Team_Member_Dictionary[search_task_member]\
-                [members]}" 
+                f"\n{members}: \
+                {Team_Member_Dictionary[search_task_member][members]}" 
 
             easygui.msgbox(member_output) 
 
