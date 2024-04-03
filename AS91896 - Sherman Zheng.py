@@ -193,7 +193,7 @@ Team_Member_Dictionary[Task_Dictionary[update_task]\
                     Team_Member_Dictionary[Task_Dictionary[update_task]\
 ["Assignee"]]["Task Assigned"].remove(update_task)
                     
-            Task_Dictionary[update_task]["Assignee"] = update_assignee
+            Task_Dictionary[update_task]["Assignee"] = None
 
             easygui.msgbox(f"Task {update_task} has been updated")
 
