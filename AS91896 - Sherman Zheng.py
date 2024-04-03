@@ -156,6 +156,11 @@ def update_task():
 
         #If the task can be identified in the Task Dictionary.
         if update_task in Task_Dictionary:
+        
+        #Asking the user to update the task assignee.
+            update_assignee = easygui.buttonbox\
+(f"Enter the name of the assignee to update for {update_task}", \
+choices= ["JSM", "JLO", "BDI"])
 
         #Asking the user to update the task status.
             update_status = easygui.buttonbox("Select the new task status:",\
@@ -163,11 +168,6 @@ choices=["Completed", "In Progress", "Blocked", "Not Started"])
 
         #Update the task status to the Task Dictionary.
             Task_Dictionary[update_task]["Status"] = update_status
-
-        #Asking the user to update the task assignee.
-            update_assignee = easygui.buttonbox\
-(f"Enter the name of the assignee to update for {update_task}", \
-choices= ["JSM", "JLO", "BDI"])
 
             """
             Add the task to the team member's task list, 
