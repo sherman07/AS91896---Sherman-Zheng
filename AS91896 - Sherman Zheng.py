@@ -68,13 +68,16 @@ Team_Member_Dictionary = {
 }
 
 
-"""
-Adding a new task to the project's task dictionary, in this
-situation, the function will ask the user multiple questions.
-Such as the title, description, priority, status of the new
-created task.
-"""
+
 def add_new_task():
+
+    """
+    Adding a new task to the project's task dictionary, in this
+    situation, the function will ask the user multiple questions.
+    Such as the title, description, priority, status of the new
+    created task.
+    """
+
     while True:
 
         #Asking the user to add a title variable of the new task.
@@ -93,7 +96,7 @@ def add_new_task():
 
         #Asking the user to add a priority variable of the new task.
         priority = easygui.integerbox("Enter the priorty rating (1 - 3):",\
-        lowerbound= PRIORITY_LOWER_LIMIT, upperbound= PRIORITY_UPPER_LIMIT)
+lowerbound= PRIORITY_LOWER_LIMIT, upperbound= PRIORITY_UPPER_LIMIT)
 
         #Stop the add_new_task fuction, if the user click cancel.
         if priority == None:
@@ -101,7 +104,7 @@ def add_new_task():
         
         #Asking the user to add a status variable of the new task.
         status = easygui.buttonbox("Select Priority", \
-        choices=["Completed", "In Progress", "Blocked", "Not Started"])
+choices=["Completed", "In Progress", "Blocked", "Not Started"])
 
         """
         The ID = ... will creates a new task ID, having the T as task.
@@ -125,24 +128,27 @@ def add_new_task():
 
         #Ask the user whether or not to make another new task.
         another_new_task = easygui.buttonbox\
-            ("Do you want to make another new task?",\
-            choices=["Yes", "No"])
+("Do you want to make another new task?", choices=["Yes", "No"])
         
         if another_new_task == "No":
             break
 
 
-"""
-Updating a new information to a specific task from the task dictionary.
-The function will allows user to update informations in specific task,
-which is from the task dictionary.
-"""
+
+
 def update_task():
+
+    """
+    Updating a new information to a specific task from the task 
+    dictionary. The function will allows user to update informations 
+    in specific task, which is from the task dictionary.
+    """
+
     while True:
 
         #Asking the user to update one task from the dictionary.
         update_task = easygui.enterbox\
-        ("Enter the task to update: e.g.(T1, T2, T3 ...)")
+("Enter the task to update: e.g.(T1, T2, T3 ...)")
 
         #Stop the update_task fuction, if the user click cancel.
         if update_task == None:
@@ -153,25 +159,25 @@ def update_task():
 
         #Asking the user to update the task status.
             update_status = easygui.buttonbox("Select the new task status:",\
-            choices=["Completed", "In Progress", "Blocked", "Not Started"])
+choices=["Completed", "In Progress", "Blocked", "Not Started"])
 
         #Update the task status to the Task Dictionary.
             Task_Dictionary[update_task]["Status"] = update_status
 
         #Asking the user to update the task assignee.
             update_assignee = easygui.buttonbox\
-            (f"Enter the name of the assignee to update for {update_task}", 
-            choices= ["JSM", "JLO", "BDI"])
+(f"Enter the name of the assignee to update for {update_task}", \
+choices= ["JSM", "JLO", "BDI"])
 
             """
             Add the task to the team member's task list, 
             if the task is not in the member task list.
             """
             if update_task not in Team_Member_Dictionary\
-                        [update_assignee]["Task Assigned"]:
+[update_assignee]["Task Assigned"]:
 
-                        Team_Member_Dictionary[update_assignee]\
-                        ["Task Assigned"].append(update_task)
+                Team_Member_Dictionary[update_assignee]\
+["Task Assigned"].append(update_task)
                     
             Task_Dictionary[update_task]["Assignee"] = update_assignee
 
@@ -180,12 +186,12 @@ def update_task():
             if the task is in the member task list and is completed.
             """
             if update_status == "Completed" and update_task in \
-                    Team_Member_Dictionary[Task_Dictionary[update_task]\
-                    ["Assignee"]]["Task Assigned"]:
+Team_Member_Dictionary[Task_Dictionary[update_task]\
+["Assignee"]]["Task Assigned"]:
                         
         #Remove the Completed task from the Team Member Dictionary.
-                        Team_Member_Dictionary[Task_Dictionary[update_task]\
-                        ["Assignee"]]["Task Assigned"].remove(update_task)
+                    Team_Member_Dictionary[Task_Dictionary[update_task]\
+["Assignee"]]["Task Assigned"].remove(update_task)
                     
             Task_Dictionary[update_task]["Assignee"] = update_assignee
 
@@ -193,29 +199,30 @@ def update_task():
 
         #Ask the user whether or not to update another task.
             update_another_task = easygui.buttonbox\
-                        ("Do you want to update another new task?",\
-                        choices=["Yes", "No"])
+("Do you want to update another new task?",\
+choices=["Yes", "No"])
                     
             if update_another_task == "No":
                         break
         else:
             easygui.msgbox\
-            ("Task not found, please enter a valid task.")
+("Task not found, please enter a valid task.")
 
             
-"""
-Search function will allows user to search a specific task or member.
-In this situation, the programme provide two choices for user to click,
-Task and Member. Then the user will able to choose the specific task or
-member to search on.
-"""
 def search_task_member():
+
+    """
+    Search function will allows user to search a specific task or 
+    member. In this situation, the programme provide two choices for 
+    user to click, task and member. Then the user will able to choose 
+    the specific task or member to search on.
+    """
+
     while True:
 
         #Asking the user to search for one choice, from Task or Member.
         search_task_or_member = easygui.buttonbox\
-        ("Do you want search for a Task or Member", \
-        choices= ["Task", "Member"])
+("Do you want search for a Task or Member", choices= ["Task", "Member"])
 
         #If the choice is Task...
         if search_task_or_member == "Task":
@@ -235,7 +242,7 @@ def search_task_member():
 
             for tasks in Task_Dictionary[search_task_member]: 
                 task_output += \
-                f"\n{tasks}: {Task_Dictionary[search_task_member][tasks]}" 
+f"\n{tasks}: {Task_Dictionary[search_task_member][tasks]}" 
 
             easygui.msgbox(task_output) 
 
@@ -253,29 +260,29 @@ def search_task_member():
 
         #easygui.msgbox(member_catogories) 
             search_task_member = easygui.buttonbox\
-            (member_msg, member_title, member_categories) 
+(member_msg, member_title, member_categories) 
 
             for members in Team_Member_Dictionary[search_task_member]: 
                 member_output +=\
-                f"\n{members}: \
-                {Team_Member_Dictionary[search_task_member][members]}" 
+f"\n{members}: {Team_Member_Dictionary[search_task_member][members]}" 
 
             easygui.msgbox(member_output) 
 
         #Ask the user whether or not to search another Task/Member.
         search_another_task = easygui.buttonbox\
-        ("Do you want to search another new task/member?",\
-        choices=["Yes", "No"])
+("Do you want to search another new task/member?", choices=["Yes", "No"])
                     
         if search_another_task == "No":
             break
         
         
-"""
-Generate out the current task status, this allows the user to have a 
-view of the current tasks progress.
-"""
 def generate_report():
+
+    """
+    Generate out the current task status, this allows the user to have a 
+    view of the current tasks progress.
+    """
+
     while True:
 
         #The default counters for different task statuses.
@@ -311,8 +318,7 @@ def generate_report():
 
         #Ask the user whether or not to generate report again.
         search_another_report = easygui.buttonbox\
-        ("Do you want to generate another task status report?",\
-        choices=["Yes", "No"])
+("Do you want to generate another task status report?", choices=["Yes", "No"])
                     
         if search_another_report == "No":
             break
@@ -343,51 +349,59 @@ def output_task_collection():
 
         #Ask the user whether or not to output task collection again.
         output_task_collection_again = easygui.buttonbox\
-        ("Do you want to  output task collection again?",\
-        choices=["Yes", "No"])
+("Do you want to  output task collection again?", choices=["Yes", "No"])
                     
         if output_task_collection_again == "No":
             break
         
-"""
-A main menu that allows the user to click the function that they like.
-In this situation, the user will have the oppitunity to select the 
-function they want to run.
-"""
+
 def main_menu():
+
+    """
+    A main menu that allows the user to click the function that they 
+    like. In this situation, the user will have the oppitunity to 
+    select the function they want to run.
+    """
+
     """
     Allows the user to repeat in the menu page, through the while loop,
     after the user finish one function.
     """
+
     while True:
 
         #Allows the user to make a choice.
         user_choices = easygui.buttonbox( "Select One Option:", \
-        choices=["Add New Task", \
-        "Update Task", "Search Task or Member",\
-        "Generate Task Report", "Output Task Collection", "Exit"])
+ choices=["Add New Task", "Update Task", "Search Task or Member",\
+"Generate Task Report", "Output Task Collection", "Exit"])
 
         """
         Runs the add new task function in the programme, 
         if the user click the Add New Task button.
         """
+
         """
         Runs the update task function in the programme, 
         if the user click the Update Task button.
         """
+
         """
         Runs the search task or member function in the programme, 
         if the user click the Search Task or Member button.
         """
+
         """
         Runs the generate task report function in the programme, 
         if the user click the Generate Task Report button.
         """
+
         """
         Runs the output task collection function in the programme, 
         if the user click the Output Task Collection button.
         """
+
         #Stop the programme, if the user click Exit button.
+
         if user_choices == "Add New Task":
             add_new_task()
         elif user_choices == "Update Task":
