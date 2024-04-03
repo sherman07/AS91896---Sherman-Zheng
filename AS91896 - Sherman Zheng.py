@@ -68,7 +68,6 @@ Team_Member_Dictionary = {
 }
 
 
-
 def add_new_task():
 
     """
@@ -132,8 +131,6 @@ choices=["Completed", "In Progress", "Blocked", "Not Started"])
         
         if another_new_task == "No":
             break
-
-
 
 
 def update_task():
@@ -324,11 +321,13 @@ def generate_report():
             break
 
         
-"""
-Outputting the task collection in a readable format, allows the user
-to look through all task's informations. 
-"""
 def output_task_collection():
+
+    """
+    Outputting the task collection in a readable format, allows the user
+    to look through all task's informations. 
+    """
+    
     while True:
 
         #An empty string to store new informations.
