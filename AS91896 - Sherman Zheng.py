@@ -176,7 +176,7 @@ choices=["Completed", "In Progress", "Blocked", "Not Started"])
                 Team_Member_Dictionary[update_assignee]\
 ["Task Assigned"].append(update_task)
                     
-        #Update the task status in the Task Dictionary.
+        #Update the Assignee in the Task Dictionary.
                 Task_Dictionary[update_task]["Assignee"] = update_assignee
 
             """
@@ -186,7 +186,7 @@ choices=["Completed", "In Progress", "Blocked", "Not Started"])
 update_task in Team_Member_Dictionary[Task_Dictionary[update_task]\
 ["Assignee"]]["Task Assigned"]:
                 
-        #Update the task status in the Task Dictionary.
+        #Update the Assignee in the Task Dictionary.
                 Task_Dictionary[update_task]["Assignee"] = update_assignee
 
             """
@@ -201,17 +201,21 @@ Team_Member_Dictionary[Task_Dictionary[update_task]\
                 Team_Member_Dictionary[Task_Dictionary[update_task]\
 ["Assignee"]]["Task Assigned"].remove(update_task)
 
+        #Update the Assignee of the Completed task to None.
                 Task_Dictionary[update_task]["Assignee"] = None
 
-        #Display a message box to inform the user that the task has been updated.
-            easygui.msgbox(f"Task {update_task} has been updated")
+            """ 
+            Display a message box to inform the user, 
+            that the task has been updated.
+            """
+        easygui.msgbox(f"Task {update_task} has been updated")
 
         #Ask the user whether or not to update another task.
-            update_another_task = easygui.buttonbox\
+        update_another_task = easygui.buttonbox\
 ("Do you want to update another new task?",\
 choices=["Yes", "No"])
                     
-            if update_another_task == "No":
+        if update_another_task == "No":
                         break
         else:
             easygui.msgbox\
