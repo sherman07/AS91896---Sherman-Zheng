@@ -176,10 +176,10 @@ choices=["Completed", "In Progress", "Blocked", "Not Started"])
                 Team_Member_Dictionary[update_assignee]\
 ["Task Assigned"].append(update_task)
                     
-            Task_Dictionary[update_task]["Assignee"] = update_assignee
+                Task_Dictionary[update_task]["Assignee"] = update_assignee
 
-            if update_status != "Completed" and update_task in \
-Team_Member_Dictionary[Task_Dictionary[update_task]\
+            if update_status not in Team_Member_Dictionary and \
+update_task in Team_Member_Dictionary[Task_Dictionary[update_task]\
 ["Assignee"]]["Task Assigned"]:
                 
                 Task_Dictionary[update_task]["Assignee"] = update_assignee
@@ -196,7 +196,7 @@ Team_Member_Dictionary[Task_Dictionary[update_task]\
                 Team_Member_Dictionary[Task_Dictionary[update_task]\
 ["Assignee"]]["Task Assigned"].remove(update_task)
                     
-            Task_Dictionary[update_task]["Assignee"] = None
+                Task_Dictionary[update_task]["Assignee"] = None
 
             easygui.msgbox(f"Task {update_task} has been updated")
 
