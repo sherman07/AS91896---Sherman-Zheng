@@ -176,12 +176,17 @@ choices=["Completed", "In Progress", "Blocked", "Not Started"])
                 Team_Member_Dictionary[update_assignee]\
 ["Task Assigned"].append(update_task)
                     
+        #Update the task status in the Task Dictionary.
                 Task_Dictionary[update_task]["Assignee"] = update_assignee
 
+            """
+            
+            """
             if update_status not in Team_Member_Dictionary and \
 update_task in Team_Member_Dictionary[Task_Dictionary[update_task]\
 ["Assignee"]]["Task Assigned"]:
                 
+        #Update the task status in the Task Dictionary.
                 Task_Dictionary[update_task]["Assignee"] = update_assignee
 
             """
@@ -195,9 +200,10 @@ Team_Member_Dictionary[Task_Dictionary[update_task]\
         #Remove the Completed task from the Team Member Dictionary.
                 Team_Member_Dictionary[Task_Dictionary[update_task]\
 ["Assignee"]]["Task Assigned"].remove(update_task)
-                    
+
                 Task_Dictionary[update_task]["Assignee"] = None
 
+        #Display a message box to inform the user that the task has been updated.
             easygui.msgbox(f"Task {update_task} has been updated")
 
         #Ask the user whether or not to update another task.
