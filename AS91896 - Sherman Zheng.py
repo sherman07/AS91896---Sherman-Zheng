@@ -178,6 +178,12 @@ choices=["Completed", "In Progress", "Blocked", "Not Started"])
                     
             Task_Dictionary[update_task]["Assignee"] = update_assignee
 
+            if update_status != "Completed" and update_task in \
+Team_Member_Dictionary[Task_Dictionary[update_task]\
+["Assignee"]]["Task Assigned"]:
+                
+                Task_Dictionary[update_task]["Assignee"] = update_assignee
+
             """
             Remove the task to the team member's task list, 
             if the task is in the member task list and is completed.
@@ -187,7 +193,7 @@ Team_Member_Dictionary[Task_Dictionary[update_task]\
 ["Assignee"]]["Task Assigned"]:
                         
         #Remove the Completed task from the Team Member Dictionary.
-                    Team_Member_Dictionary[Task_Dictionary[update_task]\
+                Team_Member_Dictionary[Task_Dictionary[update_task]\
 ["Assignee"]]["Task Assigned"].remove(update_task)
                     
             Task_Dictionary[update_task]["Assignee"] = None
