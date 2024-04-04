@@ -276,8 +276,8 @@ f"\n{members}: {Team_Member_Dictionary[search_task_member][members]}"
 def generate_report():
 
     """
-    Generate out the current task status, this allows the user to have a 
-    view of the current tasks progress.
+    Generate out the current task status, this allows the user to
+    have a view of the current tasks progress.
     """
 
     while True:
