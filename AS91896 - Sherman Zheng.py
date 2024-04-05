@@ -448,6 +448,6 @@ def main_menu():
         """
         Run the Main Menu function at first, 
         so the user will able to make a choice of which function they
-        want to 
+        would like to run.
         """
 main_menu()
