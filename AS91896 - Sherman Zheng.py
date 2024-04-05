@@ -147,7 +147,7 @@ def update_task():
         #Asking the user to update one task from the dictionary.
         update_task = easygui.enterbox\
         ("Enter the task to update: e.g.(T1, T2, T3 ...)")
-
+        
         #Stop the update_task fuction, if the user click cancel.
         if update_task == None:
              break
@@ -444,4 +444,10 @@ def main_menu():
         else:
             easygui.msgbox("Goodbye")
             break
+
+        """
+        Run the Main Menu function at first, 
+        so the user will able to make a choice of which function they
+        want to 
+        """
 main_menu()
