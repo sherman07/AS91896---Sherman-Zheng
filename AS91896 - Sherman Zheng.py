@@ -173,6 +173,7 @@ choices=["Completed", "In Progress", "Blocked", "Not Started"])
             if update_task not in Team_Member_Dictionary\
 [update_assignee]["Task Assigned"]:
 
+        #Add the Task into the Assignee's task list.
                 Team_Member_Dictionary[update_assignee]\
 ["Task Assigned"].append(update_task)
                     
@@ -197,7 +198,7 @@ update_task in Team_Member_Dictionary[Task_Dictionary[update_task]\
 Team_Member_Dictionary[Task_Dictionary[update_task]\
 ["Assignee"]]["Task Assigned"]:
                         
-        #Remove the Completed task from the Team Member Dictionary.
+        #Remove the Completed task from theAssignee's task list.
                 Team_Member_Dictionary[Task_Dictionary[update_task]\
 ["Assignee"]]["Task Assigned"].remove(update_task)
 
