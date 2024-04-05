@@ -129,6 +129,7 @@ choices=["Completed", "In Progress", "Blocked", "Not Started"])
         another_new_task = easygui.buttonbox\
 ("Do you want to make another new task?", choices=["Yes", "No"])
         
+        #If the user choice is "No", exit the While Loop.
         if another_new_task == "No":
             break
 
@@ -145,62 +146,65 @@ def update_task():
 
         #Asking the user to update one task from the dictionary.
         update_task = easygui.enterbox\
-("Enter the task to update: e.g.(T1, T2, T3 ...)")
+        ("Enter the task to update: e.g.(T1, T2, T3 ...)")
 
         #Stop the update_task fuction, if the user click cancel.
         if update_task == None:
              break
-
+        
         #If the task can be identified in the Task Dictionary.
         if update_task in Task_Dictionary:
-        
+
+                
         #Asking the user to update the task assignee.
             update_assignee = easygui.buttonbox\
-(f"Enter the name of the assignee to update for {update_task}", \
-choices= ["JSM", "JLO", "BDI"])
+            (f"Enter the name of the assignee to update for {update_task}", \
+            choices= ["JSM", "JLO", "BDI"])
 
         #Asking the user to update the task status.
             update_status = easygui.buttonbox("Select the new task status:",\
-choices=["Completed", "In Progress", "Blocked", "Not Started"])
+            choices=["Completed", "In Progress", "Blocked", "Not Started"])
 
         #Update the task status to the Task Dictionary.
             Task_Dictionary[update_task]["Status"] = update_status
 
             """
-            Add the task to the team member's task list, 
-            if the task is not in the member task list.
+            Add the task to member's task list, 
+            if the task is not in member's task list.
             """
             if update_task not in Team_Member_Dictionary\
-[update_assignee]["Task Assigned"]:
+                [update_assignee]["Task Assigned"]:
 
         #Add the Task into the Assignee's task list.
                 Team_Member_Dictionary[update_assignee]\
-["Task Assigned"].append(update_task)
+                ["Task Assigned"].append(update_task)
                     
         #Update the Assignee in the Task Dictionary.
                 Task_Dictionary[update_task]["Assignee"] = update_assignee
 
             """
-            
+            Update the assignee to the Task Dictionary, 
+            if the task is not Completed and is in the 
+            member's task list.
             """
-            if update_status not in Team_Member_Dictionary and \
-update_task in Team_Member_Dictionary[Task_Dictionary[update_task]\
-["Assignee"]]["Task Assigned"]:
+            if update_status not in Team_Member_Dictionary and update_task \
+                in Team_Member_Dictionary[Task_Dictionary[update_task]\
+                ["Assignee"]]["Task Assigned"]:
                 
         #Update the Assignee in the Task Dictionary.
                 Task_Dictionary[update_task]["Assignee"] = update_assignee
 
             """
-            Remove the task to the team member's task list, 
-            if the task is in the member task list and is completed.
+            Remove the task from member's task list, 
+            if the task is in the member's task list and is Completed.
             """
             if update_status == "Completed" and update_task in \
-Team_Member_Dictionary[Task_Dictionary[update_task]\
-["Assignee"]]["Task Assigned"]:
+                Team_Member_Dictionary[Task_Dictionary[update_task]\
+                ["Assignee"]]["Task Assigned"]:
                         
         #Remove the Completed task from theAssignee's task list.
                 Team_Member_Dictionary[Task_Dictionary[update_task]\
-["Assignee"]]["Task Assigned"].remove(update_task)
+                ["Assignee"]]["Task Assigned"].remove(update_task)
 
         #Update the Assignee of the Completed task to None.
                 Task_Dictionary[update_task]["Assignee"] = None
@@ -209,18 +213,21 @@ Team_Member_Dictionary[Task_Dictionary[update_task]\
             Display a message box to inform the user, 
             that the task has been updated.
             """
-        easygui.msgbox(f"Task {update_task} has been updated")
+            easygui.msgbox(f"Task {update_task} has been updated")
 
         #Ask the user whether or not to update another task.
-        update_another_task = easygui.buttonbox\
-("Do you want to update another new task?",\
-choices=["Yes", "No"])
-                    
-        if update_another_task == "No":
-                        break
+            update_another_task = easygui.buttonbox\
+            ("Do you want to update another new task?", choices=["Yes", "No"])
+        
+        #If the user choice is "No", exit the While Loop.
+            if update_another_task == "No":
+                break
+
+            
+        #If the task that user entered is not in the Task Dictionarty.
         else:
-            easygui.msgbox\
-("Task not found, please enter a valid task.")
+            easygui.msgbox("Task not found, please enter a valid task.")
+    
 
             
 def search_task_member():
@@ -250,14 +257,16 @@ def search_task_member():
             for task_list in Task_Dictionary: 
                 task_catogories.append(task_list)
 
-        #easygui.msgbox(task_catogories) 
+        #Display a button box for the user to select a specific task.
             search_task_member = easygui.buttonbox\
             (task_msg, task_title, task_catogories) 
 
+        #Retrieve and display the informations of the selected task.
             for tasks in Task_Dictionary[search_task_member]: 
                 task_output += \
 f"\n{tasks}: {Task_Dictionary[search_task_member][tasks]}" 
 
+        #Display member's informations through message box.
             easygui.msgbox(task_output) 
 
         #If the choice is Member...   
@@ -272,20 +281,23 @@ f"\n{tasks}: {Task_Dictionary[search_task_member][tasks]}"
             for member_list in Team_Member_Dictionary: 
                 member_categories.append(member_list) 
 
-        #easygui.msgbox(member_catogories) 
+        #Display a button box for the user to select a specific member.
             search_task_member = easygui.buttonbox\
 (member_msg, member_title, member_categories) 
 
+        #Retrieve and display the informations of the selected member.
             for members in Team_Member_Dictionary[search_task_member]: 
                 member_output +=\
 f"\n{members}: {Team_Member_Dictionary[search_task_member][members]}" 
 
+        #Display member's informations through message box.
             easygui.msgbox(member_output) 
 
         #Ask the user whether or not to search another Task/Member.
         search_another_task = easygui.buttonbox\
 ("Do you want to search another new task/member?", choices=["Yes", "No"])
                     
+        #If the user choice is "No", exit the While Loop.
         if search_another_task == "No":
             break
         
@@ -366,7 +378,8 @@ def output_task_collection():
         #Ask the user whether or not to output task collection again.
         output_task_collection_again = easygui.buttonbox\
 ("Do you want to  output task collection again?", choices=["Yes", "No"])
-                    
+
+        #If the user choice is "No", exit the While Loop. 
         if output_task_collection_again == "No":
             break
         
