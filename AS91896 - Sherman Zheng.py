@@ -320,15 +320,20 @@ def generate_report():
         #Repeat over tasks to count different statuses
         for task in Task_Dictionary.values():
             task_status = task["Status"]
+
+        #If there is a "Completed" status task, the counter + 1.
             if task_status == "Completed":
                 num_completed += 1
 
+        #If there is a "In Progress" status task, the counter + 1.
             elif task_status == "In Progress":
                 num_in_progress += 1
-
+        
+        #If there is a "Blocked" status task, the counter + 1.
             elif task_status == "Blocked":
                 num_in_blocked += 1
 
+        #If there is a "Not Strated" status task, the counter + 1.
             elif task_status == "Not Started":
                 num_not_started += 1
 
