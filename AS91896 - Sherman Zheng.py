@@ -351,6 +351,7 @@ def generate_report():
         search_another_report = easygui.buttonbox\
 ("Do you want to generate another task status report?", choices=["Yes", "No"])
                     
+        #If the user choice is "No", exit the While Loop.
         if search_another_report == "No":
             break
 
