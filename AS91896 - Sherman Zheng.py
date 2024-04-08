@@ -81,39 +81,62 @@ def add_new_task():
 
     while True:
 
-        #Diplay the task that the user is on right now. 
+        #Diplay the function that the user is on right now. 
         add_title = "Add New Task"
+
+        #Display the message for user to add a new task.
+        add_title_msg = "Enter the title of the task:"
+
+        #Display the message for user to add description for new task.
+        add_description_msg = "Enter the description of the task:"
+
+        #Display the message for user to add priority for new task.
+        add_priority_msg = "Enter the priorty rating (1 - 3):"
+
+        #Display the message for user to add status for new task
+        add_status_msg = "Select Priority:"
+
+        #Choices for user to choose for add a status.
+        add_status_choices = \
+["Completed", "In Progress", "Blocked", "Not Started"]
+        
+        add_task_msg = "New task added with ID: "
+        
+        #Display the message for user to add another new task.
+        add_new_task_msg = "Do you want to make another new task?"
+
+        #Choices for user to choose for add another new task.
+        add_new_task_choices = ["Yes", "No"]
         
         #Asking the user to add a title variable of the new task.
-        title = easygui.enterbox("Enter the title of the task:", add_title)
+        title = easygui.enterbox(add_title_msg, add_title)
 
         #Stop the add_new_task fuction, if the user click cancel.
         if title == None:
              break
 
         #Asking the user to add a description variable of the new task.
-        description = easygui.enterbox("Enter the description of the task:",\
-add_title)
+        description = easygui.enterbox(add_description_msg, add_title)
 
         #Stop the add_new_task fuction, if the user click cancel.
         if description == None:
              break
 
         #Asking the user to add a priority variable of the new task.
-        priority = easygui.integerbox("Enter the priorty rating (1 - 3):",\
-add_title, lowerbound = PRIORITY_LOWER_LIMIT, \
-upperbound = PRIORITY_UPPER_LIMIT)
+        priority = easygui.integerbox(add_priority_msg,add_title, \
+lowerbound = PRIORITY_LOWER_LIMIT, upperbound = PRIORITY_UPPER_LIMIT)
 
         #Stop the add_new_task fuction, if the user click cancel.
         if priority == None:
              break
         
         #Asking the user to add a status variable of the new task.
-        status = easygui.buttonbox("Select Priority", \
-add_title, choices=["Completed", "In Progress", "Blocked", "Not Started"])
+        status = easygui.buttonbox(add_status_msg, add_title, \
+add_status_choices)
 
         """
-        The ID = ... will creates a new task ID, having the T as task.
+        The ID = ... . This Will creates a new task ID, having the T 
+        as task. 
         Having the current number of Task in the dictionary + 1.
         """
         new_task_id = "T" + str(len(Task_Dictionary) + 1)
@@ -130,11 +153,11 @@ add_title, choices=["Completed", "In Progress", "Blocked", "Not Started"])
         #Adding a new task to the Task_Dictionary, with an ID.
         Task_Dictionary[new_task_id] = new_task
         
-        easygui.msgbox(f"New task added with ID: {new_task_id}.", add_title)
+        easygui.msgbox(f"{add_task_msg}{new_task_id}.", add_title)
 
         #Ask the user whether or not to make another new task.
         another_new_task = easygui.buttonbox\
-("Do you want to make another new task?", add_title, choices=["Yes", "No"])
+(add_new_task_msg, add_title, add_new_task_choices)
         
         #If the user choice is "No", exit the While Loop.
         if another_new_task == "No":
@@ -151,12 +174,42 @@ def update_task():
 
     while True:
 
-        #Diplay the task that the user is on right now. 
+        #Diplay the function that the user is on right now. 
         update_title = "Update Task"
 
+        #Display the message for user to update a task.
+        update_task_msg = "Enter the task to update: e.g.(T1, T2, T3 ...)"
+
+        #Display the message for user to update an assignee.
+        update_assignee_msg = \
+        "Enter the name of the assignee to update for the task"
+        
+        #Choices for user to choose for update an assignee.
+        update_assignee_choices = ["JSM", "JLO", "BDI"]
+
+        #Display the message for user to update a status.
+        update_status_msg = "Select the new task status:"
+
+        #Choices for user to choose for update a status.
+        update_status_choices = \
+        ["Completed", "In Progress", "Blocked", "Not Started"]
+        
+        #Display the message to user that task have been updated.
+        update_msg = "Task has been updated."
+
+        #Display the message for user to update another task.
+        update_another_task_msg = "Do you want to update another new task?"
+
+        #Choices for user to choose for update another task.
+        update_another_task_choices = ["Yes", "No"]
+
+        #Dislay the message of the task that user input is invalid.
+        update_task_not_found_msg = \
+"Task not found, please enter a valid task."
+
+
         #Asking the user to update one task from the dictionary.
-        update_task = easygui.enterbox\
-        ("Enter the task to update: e.g.(T1, T2, T3 ...)", update_title)
+        update_task = easygui.enterbox(update_task_msg, update_title)
         
         #Stop the update_task fuction, if the user click cancel.
         if update_task == None:
@@ -167,13 +220,11 @@ def update_task():
             
         #Asking the user to update the task assignee.
             update_assignee = easygui.buttonbox\
-            (f"Enter the name of the assignee to update for {update_task}", \
-            update_title, choices= ["JSM", "JLO", "BDI"])
+            (update_assignee_msg, update_title, update_assignee_choices)
 
         #Asking the user to update the task status.
-            update_status = easygui.buttonbox("Select the new task status:",\
-            update_title, \
-            choices=["Completed", "In Progress", "Blocked", "Not Started"])
+            update_status = easygui.buttonbox(update_status_msg,\
+            update_title, update_status_choices)
 
         #Update the task status to the Task Dictionary.
             Task_Dictionary[update_task]["Status"] = update_status
@@ -223,13 +274,12 @@ def update_task():
             Display a message box to inform the user, 
             that the task has been updated.
             """
-            easygui.msgbox(f"Task {update_task} has been updated.", \
-            update_title)
+            easygui.msgbox(f"{update_task} {update_msg}", update_title)
 
         #Ask the user whether or not to update another task.
             update_another_task = easygui.buttonbox\
-            ("Do you want to update another new task?", update_title, 
-            choices=["Yes", "No"])
+            (update_another_task_msg, update_title, \
+            update_another_task_choices)
         
         #If the user choice is "No", exit the While Loop.
             if update_another_task == "No":
@@ -237,8 +287,7 @@ def update_task():
 
         #If the task that user entered is not in the Task Dictionarty.
         else:
-            easygui.msgbox("Task not found, please enter a valid task.", \
-            update_title)
+            easygui.msgbox(update_task_not_found_msg, update_title)
     
 
             
