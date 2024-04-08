@@ -302,6 +302,11 @@ def search_task_member():
 
     while True:
 
+        search_another_msg = \
+"Do you want to search another new task/member?"
+        
+        search_another_choices = ["Yes", "No"]
+
         #Asking the user to search for one choice, from Task or Member.
         search_task_or_member = easygui.buttonbox\
 ("Do you want search for a Task or Member", "Search Task or Member",\
@@ -310,16 +315,18 @@ choices= ["Task", "Member"])
         #If the choice is Task...
         if search_task_or_member == "Task":
 
+        #An empty variable that store all final serach information.
             task_output = "" 
 
         #Create an empty list to hold task catogories.
             task_catogories = [] 
 
-        #Diplay the task that the user is on right now. 
+        #Diplay the function that the user is on right now. 
             task_title = "Task Search" 
         
-
+        #Display the message for user to search a task.
             task_msg = "Click on the Task you would like displayed" 
+
 
         #Adding the Task List from Task Dictionary to a list.
             for task_list in Task_Dictionary: 
@@ -340,11 +347,18 @@ f"\n{tasks}: {Task_Dictionary[search_task_member][tasks]}"
         #If the choice is Member...   
         if search_task_or_member == "Member":
             
+        #An empty variable that store all final serach information.
             member_output = ""
-            member_categories = []
-            member_title = "Member Search"
-            member_msg = "Click on the Member you would like displayed"
 
+        #Create an empty list to hold member catogories.
+            member_categories = []
+
+        #Diplay the function that the user is on right now. 
+            member_title = "Member Search"
+
+        #Display the message for user to search a member.
+            member_msg = "Click on the Member you would like displayed"
+            
         #Adding the Member List from Team Member Dictionary to a list.
             for member_list in Team_Member_Dictionary: 
                 member_categories.append(member_list) 
@@ -362,11 +376,11 @@ f"\n{members}: {Team_Member_Dictionary[search_task_member][members]}"
             easygui.msgbox(member_output) 
 
         #Ask the user whether or not to search another Task/Member.
-        search_another_task = easygui.buttonbox\
-("Do you want to search another new task/member?", choices=["Yes", "No"])
+        search_another_task_or_member = easygui.buttonbox\
+(search_another_msg, member_title, search_another_choices)
                     
         #If the user choice is "No", exit the While Loop.
-        if search_another_task == "No":
+        if search_another_task_or_member == "No":
             break
         
         
