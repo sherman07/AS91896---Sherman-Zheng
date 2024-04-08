@@ -153,9 +153,13 @@ def update_task():
              break
         
         #If the task can be identified in the Task Dictionary.
-        if update_task in Task_Dictionary:
+        for update_task in Task_Dictionary:
 
-                
+        #If the task that user entered is not in the Task Dictionarty.
+            if update_task not in Task_Dictionary:
+                easygui.msgbox("Task not found, please enter a valid task.")
+                return
+            
         #Asking the user to update the task assignee.
             update_assignee = easygui.buttonbox\
             (f"Enter the name of the assignee to update for {update_task}", \
@@ -222,11 +226,6 @@ def update_task():
         #If the user choice is "No", exit the While Loop.
             if update_another_task == "No":
                 break
-
-            
-        #If the task that user entered is not in the Task Dictionarty.
-        else:
-            easygui.msgbox("Task not found, please enter a valid task.")
     
 
             
