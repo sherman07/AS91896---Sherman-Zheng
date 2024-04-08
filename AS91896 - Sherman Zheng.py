@@ -48,6 +48,8 @@ Task_Dictionary = {
     }
     
 }
+
+
 #The Team Member Dictionary that stores the information of all member.
 Team_Member_Dictionary = {
     "JSM": {
@@ -79,15 +81,19 @@ def add_new_task():
 
     while True:
 
+        #Diplay the task that the user is on right now. 
+        add_title = "Add New Task"
+
         #Asking the user to add a title variable of the new task.
-        title = easygui.enterbox("Enter the title of the task:")
+        title = easygui.enterbox("Enter the title of the task:", add_title)
 
         #Stop the add_new_task fuction, if the user click cancel.
         if title == None:
              break
 
         #Asking the user to add a description variable of the new task.
-        description = easygui.enterbox("Enter the description of the task:")
+        description = easygui.enterbox("Enter the description of the task:",\
+add_title)
 
         #Stop the add_new_task fuction, if the user click cancel.
         if description == None:
@@ -95,7 +101,8 @@ def add_new_task():
 
         #Asking the user to add a priority variable of the new task.
         priority = easygui.integerbox("Enter the priorty rating (1 - 3):",\
-lowerbound= PRIORITY_LOWER_LIMIT, upperbound= PRIORITY_UPPER_LIMIT)
+add_title, lowerbound = PRIORITY_LOWER_LIMIT, \
+upperbound = PRIORITY_UPPER_LIMIT)
 
         #Stop the add_new_task fuction, if the user click cancel.
         if priority == None:
@@ -103,7 +110,7 @@ lowerbound= PRIORITY_LOWER_LIMIT, upperbound= PRIORITY_UPPER_LIMIT)
         
         #Asking the user to add a status variable of the new task.
         status = easygui.buttonbox("Select Priority", \
-choices=["Completed", "In Progress", "Blocked", "Not Started"])
+add_title, choices=["Completed", "In Progress", "Blocked", "Not Started"])
 
         """
         The ID = ... will creates a new task ID, having the T as task.
@@ -123,11 +130,11 @@ choices=["Completed", "In Progress", "Blocked", "Not Started"])
         #Adding a new task to the Task_Dictionary, with an ID.
         Task_Dictionary[new_task_id] = new_task
         
-        easygui.msgbox(f"New task added with ID: {new_task_id}.")
+        easygui.msgbox(f"New task added with ID: {new_task_id}.", add_title)
 
         #Ask the user whether or not to make another new task.
         another_new_task = easygui.buttonbox\
-("Do you want to make another new task?", choices=["Yes", "No"])
+("Do you want to make another new task?", add_title, choices=["Yes", "No"])
         
         #If the user choice is "No", exit the While Loop.
         if another_new_task == "No":
@@ -144,29 +151,28 @@ def update_task():
 
     while True:
 
+        #Diplay the task that the user is on right now. 
+        update_title = "Update Task"
+
         #Asking the user to update one task from the dictionary.
         update_task = easygui.enterbox\
-        ("Enter the task to update: e.g.(T1, T2, T3 ...)")
+        ("Enter the task to update: e.g.(T1, T2, T3 ...)", update_title)
         
         #Stop the update_task fuction, if the user click cancel.
         if update_task == None:
              break
         
         #If the task can be identified in the Task Dictionary.
-        for update_task in Task_Dictionary:
-
-        #If the task that user entered is not in the Task Dictionarty.
-            if update_task not in Task_Dictionary:
-                easygui.msgbox("Task not found, please enter a valid task.")
-                return
+        if update_task in Task_Dictionary:
             
         #Asking the user to update the task assignee.
             update_assignee = easygui.buttonbox\
             (f"Enter the name of the assignee to update for {update_task}", \
-            choices= ["JSM", "JLO", "BDI"])
+            update_title, choices= ["JSM", "JLO", "BDI"])
 
         #Asking the user to update the task status.
             update_status = easygui.buttonbox("Select the new task status:",\
+            update_title, \
             choices=["Completed", "In Progress", "Blocked", "Not Started"])
 
         #Update the task status to the Task Dictionary.
@@ -217,15 +223,22 @@ def update_task():
             Display a message box to inform the user, 
             that the task has been updated.
             """
-            easygui.msgbox(f"Task {update_task} has been updated")
+            easygui.msgbox(f"Task {update_task} has been updated.", \
+            update_title)
 
         #Ask the user whether or not to update another task.
             update_another_task = easygui.buttonbox\
-            ("Do you want to update another new task?", choices=["Yes", "No"])
+            ("Do you want to update another new task?", update_title, 
+            choices=["Yes", "No"])
         
         #If the user choice is "No", exit the While Loop.
             if update_another_task == "No":
                 break
+
+        #If the task that user entered is not in the Task Dictionarty.
+        else:
+            easygui.msgbox("Task not found, please enter a valid task.", \
+            update_title)
     
 
             
@@ -242,14 +255,22 @@ def search_task_member():
 
         #Asking the user to search for one choice, from Task or Member.
         search_task_or_member = easygui.buttonbox\
-("Do you want search for a Task or Member", choices= ["Task", "Member"])
+("Do you want search for a Task or Member", "Search Task or Member",\
+choices= ["Task", "Member"])
 
         #If the choice is Task...
         if search_task_or_member == "Task":
 
+        
             task_output = "" 
+
+        #Create an empty list to hold task catogories.
             task_catogories = [] 
+
+        #Diplay the task that the user is on right now. 
             task_title = "Task Search" 
+        
+
             task_msg = "Click on the Task you would like displayed" 
 
         #Adding the Task List from Task Dictionary to a list.
@@ -273,7 +294,7 @@ f"\n{tasks}: {Task_Dictionary[search_task_member][tasks]}"
             
             member_output = ""
             member_categories = []
-            member_title = "Category Search"
+            member_title = "Member Search"
             member_msg = "Click on the Member you would like displayed"
 
         #Adding the Member List from Team Member Dictionary to a list.
@@ -404,9 +425,12 @@ def main_menu():
 
     while True:
 
+        menu_title = "Welcome to Task Management System"
+        menu_info = "Select One Option:"
+
         #Allows the user to make a choice.
-        user_choices = easygui.buttonbox( "Select One Option:", \
- choices=["Add New Task", "Update Task", "Search Task or Member",\
+        user_choices = easygui.buttonbox(menu_info, menu_title\
+choices=["Add New Task", "Update Task", "Search Task or Member",\
 "Generate Task Report", "Output Task Collection", "Exit"])
 
         """
