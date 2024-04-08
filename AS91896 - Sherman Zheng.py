@@ -4,7 +4,7 @@ import easygui
 PRIORITY_UPPER_LIMIT = 3
 PRIORITY_LOWER_LIMIT = 1
 
-loop = "True"
+loop = True
 
 #The Task Dictionary that stores the information of all tasks.
 Task_Dictionary = {
@@ -75,11 +75,9 @@ Team_Member_Dictionary = {
 def check_if_user_cancel(user_input):
     global loop
     if user_input == None:
-        loop = "False"
+        loop = False
         
     
-
-
 def add_new_task():
     global loop
     """
@@ -89,7 +87,7 @@ def add_new_task():
     created task.
     """
 
-    while loop == "True":
+    while loop:
 
         #Diplay the function that the user is on right now. 
         add_title = "Add New Task"
@@ -535,7 +533,7 @@ def main_menu():
         #Stop the programme, if the user click Exit button.
 
         if user_choices == "Add New Task":
-            loop = "True"
+            loop = True
             add_new_task()
         elif user_choices == "Update Task":
             update_task()
