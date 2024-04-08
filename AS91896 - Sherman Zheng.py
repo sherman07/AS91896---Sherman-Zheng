@@ -315,10 +315,19 @@ def search_task_member():
         
         search_another_choices = ["Yes", "No"]
 
+        search_task_member_title = "Search Task or Member"
+
+        search_task_member_msg = "Do you want search for a Task or Member:"
+
+        search_task_member_choices = ["Task", "Member"]
+
+
         #Asking the user to search for one choice, from Task or Member.
         search_task_or_member = easygui.buttonbox\
-("Do you want search for a Task or Member", "Search Task or Member",\
-choices= ["Task", "Member"])
+(search_task_member_msg, search_task_member_title, search_task_member_choices)
+        
+        if search_task_or_member == None:
+            break
 
         #If the choice is Task...
         if search_task_or_member == "Task":
@@ -385,7 +394,7 @@ f"\n{members}: {Team_Member_Dictionary[search_task_member][members]}"
 
         #Ask the user whether or not to search another Task/Member.
         search_another_task_or_member = easygui.buttonbox\
-(search_another_msg, member_title, search_another_choices)
+(search_another_msg, search_task_member_title, search_another_choices)
                     
         #If the user choice is "No", exit the While Loop.
         if search_another_task_or_member == "No":
@@ -489,18 +498,25 @@ def main_menu():
     select the function they want to run.
     """
 
-    """
-    Allows the user to repeat in the menu page, through the while loop,
-    after the user finish one function.
-    """
 
     while True:
 
+        """
+        Allows the user to repeat in the menu page, through the while loop,
+        after the user finish one function.
+        """
+
+        #Diplay the function that the user is on right now. 
         menu_title = "Welcome to Task Management System"
+
+        #Display message for user to make an option.
         menu_info = "Select One Option:"
+
+        #Choices for user to choose start a function.
         menu_choices = ["Add New Task", "Update Task", \
 "Search Task or Member", "Generate Task Report", \
 "Output Task Collection", "Exit"]
+        
 
         #Allows the user to make a choice.
         user_choices = easygui.buttonbox(menu_info, menu_title, menu_choices)
