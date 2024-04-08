@@ -4,6 +4,7 @@ import easygui
 PRIORITY_UPPER_LIMIT = 3
 PRIORITY_LOWER_LIMIT = 1
 
+loop = "True"
 
 #The Task Dictionary that stores the information of all tasks.
 Task_Dictionary = {
@@ -72,12 +73,15 @@ Team_Member_Dictionary = {
 
 
 def check_if_user_cancel(user_input):
+    global loop
     if user_input == None:
-        exit, main_menu()
+        loop = "False"
+        
+    
 
 
 def add_new_task():
-
+    global loop
     """
     Adding a new task to the project's task dictionary, in this
     situation, the function will ask the user multiple questions.
@@ -85,7 +89,7 @@ def add_new_task():
     created task.
     """
 
-    while True:
+    while loop == "True":
 
         #Diplay the function that the user is on right now. 
         add_title = "Add New Task"
@@ -114,6 +118,7 @@ def add_new_task():
         #Choices for user to choose for add another new task.
         add_new_task_choices = ["Yes", "No"]
         
+
         #Asking the user to add a title variable of the new task.
         title = easygui.enterbox(add_title_msg, add_title)
 
@@ -479,6 +484,7 @@ def output_task_collection():
 
 def main_menu():
 
+    global loop
     """
     A main menu that allows the user to click the function that they 
     like. In this situation, the user will have the oppitunity to 
@@ -529,6 +535,7 @@ def main_menu():
         #Stop the programme, if the user click Exit button.
 
         if user_choices == "Add New Task":
+            loop = "True"
             add_new_task()
         elif user_choices == "Update Task":
             update_task()
