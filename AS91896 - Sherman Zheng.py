@@ -69,6 +69,9 @@ Team_Member_Dictionary = {
     }
 }
 
+def check_if_user_cancel(user_input):
+    if user_input == None:
+        pass
 
 def add_new_task():
 
@@ -113,7 +116,7 @@ def add_new_task():
 
         #Stop the add_new_task fuction, if the user click cancel.
         if title == None:
-             break
+            break
 
         #Asking the user to add a description variable of the new task.
         description = easygui.enterbox(add_description_msg, add_title)
