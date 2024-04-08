@@ -83,7 +83,7 @@ def add_new_task():
 
         #Diplay the task that the user is on right now. 
         add_title = "Add New Task"
-
+        
         #Asking the user to add a title variable of the new task.
         title = easygui.enterbox("Enter the title of the task:", add_title)
 
@@ -261,7 +261,6 @@ choices= ["Task", "Member"])
         #If the choice is Task...
         if search_task_or_member == "Task":
 
-        
             task_output = "" 
 
         #Create an empty list to hold task catogories.
@@ -427,11 +426,12 @@ def main_menu():
 
         menu_title = "Welcome to Task Management System"
         menu_info = "Select One Option:"
+        menu_choices = ["Add New Task", "Update Task", \
+"Search Task or Member", "Generate Task Report", \
+"Output Task Collection", "Exit"]
 
         #Allows the user to make a choice.
-        user_choices = easygui.buttonbox(menu_info, menu_title\
-choices=["Add New Task", "Update Task", "Search Task or Member",\
-"Generate Task Report", "Output Task Collection", "Exit"])
+        user_choices = easygui.buttonbox(menu_info, menu_title, menu_choices)
 
         """
         Runs the add new task function in the programme, 
