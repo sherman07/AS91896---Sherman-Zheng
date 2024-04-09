@@ -224,16 +224,16 @@ check_if_input_is_ok(update_user_task, update_task_msg, update_title)
     (update_assignee_msg, update_title, update_assignee_choices)
 
     #Stop the update_task fuction, if the user click cancel.
-    update_assignee = \
-check_if_input_is_ok(update_assignee, update_assignee_msg, update_title)
+    #update_assignee = \
+#check_if_input_is_ok(update_assignee, update_assignee_msg, update_title)
 
     #Asking the user to update the task status.
     update_status = easygui.buttonbox(update_status_msg,\
         update_title, update_status_choices)
 
     #Stop the add_new_task fuction, if the user click cancel.
-    update_status = check_if_input_is_ok\
-(update_assignee, update_assignee_msg, update_title)
+    #update_status = check_if_input_is_ok\
+#(update_assignee, update_assignee_msg, update_title)
     
     #Update the task status to the Task Dictionary.
     Task_Dictionary[update_user_task]["Status"] = update_status
@@ -256,7 +256,7 @@ check_if_input_is_ok(update_assignee, update_assignee_msg, update_title)
         """
         Update the assignee to the Task Dictionary, 
         if the task is not Completed and is in the 
-        member's task list.
+         member's task list.
         """
     if update_status not in Team_Member_Dictionary and update_user_task \
 in Team_Member_Dictionary[Task_Dictionary[update_user_task]\
@@ -270,8 +270,8 @@ in Team_Member_Dictionary[Task_Dictionary[update_user_task]\
     if the task is in the member's task list and is Completed.
     """
     if update_status == "Completed" and update_user_task in \
-        Team_Member_Dictionary[Task_Dictionary[update_user_task]\
-        ["Assignee"]]["Task Assigned"]:
+Team_Member_Dictionary[Task_Dictionary[update_user_task]\
+["Assignee"]]["Task Assigned"]:
                         
     #Remove the Completed task from the Assignee's task list.
         Team_Member_Dictionary[Task_Dictionary[update_user_task]\
@@ -339,7 +339,7 @@ check_if_input_is_ok\
 
     #Display a button box for the user to select a specific task.
             search_task_member = easygui.buttonbox\
-            (task_msg, task_title, task_catogories) 
+(task_msg, task_title, task_catogories) 
 
             search_task_member = \
 check_if_input_is_ok(search_task_member, task_msg, task_list)
@@ -381,6 +381,7 @@ check_if_input_is_ok(search_task_msg, task_msg, task_title)
             
             search_task_member = \
 check_if_input_is_ok(search_task_member, member_msg, member_title) 
+            
     #Retrieve and display the informations of the selected member.
             for members in Team_Member_Dictionary[search_task_member]: 
                 member_output +=\
