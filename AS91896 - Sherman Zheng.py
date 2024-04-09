@@ -71,22 +71,47 @@ Team_Member_Dictionary = {
 }
         
 
-
 def check_if_input_is_ok(user_input, user_message, user_title):
 
+    """
+    The function checks if the user input is valid(Not just empty).
+
+    Args:
+      user_input: The user's input to be validated.
+      user_message: The message to display to the user in the input box.
+      user_title: The title of the input box.
+
+    """
+
+    #Loop until the user enter valid input.
     while True:
 
+    #Display the message for user to enter a valid input.
         tell_user_to_input = "Invalid, please enter something."
+
+        tell_user_to_input_str = "Invalid, please enter a letter, not number."
+
+    #If user click cancel or exit button, back to main menu.
         if user_input is None:
             main_menu()
+
+    #If user input is empty string, tell the user through msgbox.
         elif user_input.strip() == "":
             easygui.msgbox(tell_user_to_input, user_title)
             user_input = easygui.enterbox(user_message, user_title)
+
+    #If user input is a number, tell the user through msgbox.
+        elif user_input.isalpha() == False:
+            easygui.msgbox(tell_user_to_input_str, user_title)
+            user_input = easygui.enterbox(user_message, user_title)
+
+            """
+            If the user input is valid (not None or not empty string), 
+            return back to user_input.
+            """
         else:
             return user_input
-
-# Define your main_menu and other functions here
-
+        
 def add_new_task():
 
     """
@@ -114,7 +139,8 @@ def add_new_task():
     #Choices for user to choose for add a status.
     add_status_choices = \
 ["Completed", "In Progress", "Blocked", "Not Started"]
-        
+    
+    #Display the message for user that task have been add with new ID.
     add_task_msg = "New task added with ID: "
         
         
@@ -172,6 +198,7 @@ check_if_input_is_ok(description, add_description_msg, add_title)
                     
     easygui.msgbox(f"{add_task_msg}{new_task_id}.", add_title)
 
+    #Finish the function and back to main menu.
     main_menu()
 
 def update_task():
@@ -292,6 +319,7 @@ Team_Member_Dictionary[Task_Dictionary[update_user_task]\
     """
     easygui.msgbox(f"{update_user_task} {update_msg}", update_title)
             
+    #Finish the function and back to main menu.
     main_menu()
 
             
@@ -399,6 +427,7 @@ f"\n{members}: {Team_Member_Dictionary[search_task_member][members]}"
             search_member_msg = \
 check_if_input_is_ok(search_member_msg, member_msg, member_title) 
             
+    #Finish the function and back to main menu.
     main_menu()
 
         
@@ -409,6 +438,7 @@ def generate_report():
     have a view of the current tasks progress.
     """
 
+    #Diplay the function that the user is on right now. 
     generate_report_title = "Generate Report"
 
     #The default counters for different task statuses.
@@ -447,7 +477,7 @@ def generate_report():
     #Display the report, through message box.
     easygui.msgbox(generate_task_status_report, generate_report_title)
 
-    
+    #Finish the function and back to main menu.
     main_menu()
         
 def output_task_collection():
@@ -461,6 +491,7 @@ def output_task_collection():
     #An empty string to store new informations.
     task_output = ""
 
+    #Diplay the function that the user is on right now. 
     output_task_title = "Output Task Collection"
 
     #Loop through task ID and title in the Task_Dictionary.
@@ -476,7 +507,9 @@ def output_task_collection():
     #Display the task collection through easygui message box.
     easygui.msgbox(task_output, output_task_title)
 
+    #Finish the function and back to main menu.
     main_menu()
+
 
 def main_menu():
 
@@ -508,31 +541,31 @@ def main_menu():
     user_choices = easygui.buttonbox(menu_info, menu_title, menu_choices)
 
     """
-        Runs the add new task function in the programme, 
-        if the user click the Add New Task button.
-        """
+    Runs the add new task function in the programme, 
+    if the user click the Add New Task button.
+    """
 
     """
-        Runs the update task function in the programme, 
-        if the user click the Update Task button.
-        """
+    Runs the update task function in the programme, 
+    if the user click the Update Task button.
+    """
 
     """
-        Runs the search task or member function in the programme, 
-        if the user click the Search Task or Member button.
-        """
+    Runs the search task or member function in the programme, 
+    if the user click the Search Task or Member button.
+    """
 
     """
-        Runs the generate task report function in the programme, 
-        if the user click the Generate Task Report button.
-        """
+    Runs the generate task report function in the programme, 
+    if the user click the Generate Task Report button.
+    """
 
     """
-        Runs the output task collection function in the programme, 
-        if the user click the Output Task Collection button.
-        """
+    Runs the output task collection function in the programme, 
+    if the user click the Output Task Collection button.
+    """
 
-        #Stop the programme, if the user click Exit button.
+     #Stop the programme, if the user click Exit button.
 
     if user_choices == "Add New Task":
         add_new_task()
@@ -548,8 +581,8 @@ def main_menu():
         exit()
 
     """
-        Run the Main Menu function at first, 
-        so the user will able to make a choice of which function they
-        would like to run.
-        """
+    Run the Main Menu function at first, 
+    so the user will able to make a choice of which function they
+    would like to run.
+    """
 main_menu()
