@@ -224,19 +224,16 @@ check_if_input_is_ok(update_user_task, update_task_msg, update_title)
     (update_assignee_msg, update_title, update_assignee_choices)
 
     #Stop the update_task fuction, if the user click cancel.
-    #update_assignee = \
-#check_if_input_is_ok(update_assignee, update_assignee_msg, update_title)
+    update_assignee = \
+check_if_input_is_ok(update_assignee, update_assignee_msg, update_title)
 
     #Asking the user to update the task status.
-    update_status = easygui.buttonbox(update_status_msg,\
-        update_title, update_status_choices)
+    update_status = easygui.buttonbox\
+(update_status_msg,update_title, update_status_choices)
 
     #Stop the add_new_task fuction, if the user click cancel.
-    #update_status = check_if_input_is_ok\
-#(update_assignee, update_assignee_msg, update_title)
-    
-    #Update the task status to the Task Dictionary.
-    Task_Dictionary[update_user_task]["Status"] = update_status
+    update_status = check_if_input_is_ok\
+(update_status, update_assignee_msg, update_title)
 
 
     """
@@ -253,6 +250,9 @@ check_if_input_is_ok(update_user_task, update_task_msg, update_title)
         #Update the Assignee in the Task Dictionary.
         Task_Dictionary[update_user_task]["Assignee"] = update_assignee
 
+        #Update the task status to the Task Dictionary.
+        Task_Dictionary[update_user_task]["Status"] = update_status
+
         """
         Update the assignee to the Task Dictionary, 
         if the task is not Completed and is in the 
@@ -264,6 +264,9 @@ in Team_Member_Dictionary[Task_Dictionary[update_user_task]\
                 
     #Update the Assignee in the Task Dictionary.
         Task_Dictionary[update_user_task]["Assignee"] = update_assignee
+
+        #Update the task status to the Task Dictionary.
+        Task_Dictionary[update_user_task]["Status"] = update_status
 
     """
     Remove the task from member's task list, 
@@ -279,6 +282,9 @@ Team_Member_Dictionary[Task_Dictionary[update_user_task]\
 
     #Update the Assignee of the Completed task to None.
         Task_Dictionary[update_user_task]["Assignee"] = None
+
+    #Update the task status to the Task Dictionary.
+        Task_Dictionary[update_user_task]["Status"] = update_status
 
     """ 
     Display a message box to inform the user, 
