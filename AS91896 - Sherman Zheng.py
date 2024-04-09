@@ -224,16 +224,16 @@ check_if_input_is_ok(update_user_task, update_task_msg, update_title)
     (update_assignee_msg, update_title, update_assignee_choices)
 
     #Stop the update_task fuction, if the user click cancel.
-    #update_assignee = \
-#check_if_input_is_ok(update_assignee, update_assignee_msg, update_title)
+    update_assignee = \
+check_if_input_is_ok(update_assignee, update_assignee_msg, update_title)
 
     #Asking the user to update the task status.
     update_status = easygui.buttonbox(update_status_msg,\
         update_title, update_status_choices)
 
     #Stop the add_new_task fuction, if the user click cancel.
-    #update_status = check_if_input_is_ok\
-#(update_assignee, update_assignee_msg, update_title)
+    update_status = check_if_input_is_ok\
+(update_assignee, update_assignee_msg, update_title)
     
     #Update the task status to the Task Dictionary.
     Task_Dictionary[update_user_task]["Status"] = update_status
