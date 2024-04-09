@@ -246,7 +246,7 @@ check_if_input_is_ok(update_user_task, update_task_msg, update_title)
     if update_user_task not in Team_Member_Dictionary\
 [update_assignee]["Task Assigned"]:
 
-        #Add the Task into the Assignee's task list.
+    #Add the Task into the Assignee's task list.
         Team_Member_Dictionary[update_assignee]\
         ["Task Assigned"].append(update_user_task)
                     
@@ -262,7 +262,7 @@ check_if_input_is_ok(update_user_task, update_task_msg, update_title)
 in Team_Member_Dictionary[Task_Dictionary[update_user_task]\
 ["Assignee"]]["Task Assigned"]:
                 
-        #Update the Assignee in the Task Dictionary.
+    #Update the Assignee in the Task Dictionary.
         Task_Dictionary[update_user_task]["Assignee"] = update_assignee
 
     """
@@ -277,8 +277,8 @@ Team_Member_Dictionary[Task_Dictionary[update_user_task]\
         Team_Member_Dictionary[Task_Dictionary[update_user_task]\
 ["Assignee"]]["Task Assigned"].remove(update_user_task)
 
-        #Update the Assignee of the Completed task to None.
-    Task_Dictionary[update_user_task]["Assignee"] = None
+    #Update the Assignee of the Completed task to None.
+        Task_Dictionary[update_user_task]["Assignee"] = None
 
     """ 
     Display a message box to inform the user, 
