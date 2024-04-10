@@ -89,8 +89,6 @@ def check_if_input_is_ok(user_input, user_message, user_title):
     #Display the message for user to enter a valid input.
         tell_user_to_input = "Invalid, please enter something."
 
-        tell_user_to_input_str = "Invalid, please enter a letter, not number."
-
     #If user click cancel or exit button, back to main menu.
         if user_input is None:
             main_menu()
@@ -98,11 +96,6 @@ def check_if_input_is_ok(user_input, user_message, user_title):
     #If user input is empty string, tell the user through msgbox.
         elif user_input.strip() == "":
             easygui.msgbox(tell_user_to_input, user_title)
-            user_input = easygui.enterbox(user_message, user_title)
-
-    #If user input is a number, tell the user through msgbox.
-        elif user_input.isalpha() == False:
-            easygui.msgbox(tell_user_to_input_str, user_title)
             user_input = easygui.enterbox(user_message, user_title)
 
             """
@@ -146,14 +139,20 @@ def add_new_task():
         
     #Asking the user to add a description variable of the new task.
     title = easygui.enterbox(add_title_msg, add_title)
-
-    #Exit the add_new_task fuction, if the user click cancel.
+    
+    """
+    Run the check_if_input_is_ok function, 
+    if the user click cancel or other things.
+    """
     title = check_if_input_is_ok(title, add_title_msg, add_title) 
 
     #Asking the user to add a description variable of the new task.
     description = easygui.enterbox(add_description_msg, add_title)
 
-    #Exit the add_new_task fuction, if the user click cancel.
+    """
+    Run the check_if_input_is_ok function, 
+    if the user click cancel or other things.
+    """
     description = \
 check_if_input_is_ok(description, add_description_msg, add_title)  
                 
@@ -174,7 +173,10 @@ owerbound = PRIORITY_LOWER_LIMIT, upperbound = PRIORITY_UPPER_LIMIT)
     #Asking the user to add a status variable of the new task.
     status = easygui.buttonbox(add_status_msg, add_title, add_status_choices)
     
-    #Exit the add_new_task fuction, if the user click cancel.
+    """
+    Run the check_if_input_is_ok function, 
+    if the user click cancel or other things.
+    """
     status = check_if_input_is_ok(status, add_status_msg, add_title)
 
     """
@@ -243,7 +245,10 @@ def update_task():
     update_user_task = easygui.buttonbox\
     (update_task_msg, update_title, update_task_catogories)
 
-    #Stop the update_task fuction, if the user click cancel.
+    """
+    Run the check_if_input_is_ok function, 
+    if the user click cancel or other things.
+    """
     update_user_task = \
 check_if_input_is_ok(update_user_task, update_task_msg, update_title)
     
@@ -251,7 +256,10 @@ check_if_input_is_ok(update_user_task, update_task_msg, update_title)
     update_assignee = easygui.buttonbox\
     (update_assignee_msg, update_title, update_assignee_choices)
 
-    #Stop the update_task fuction, if the user click cancel.
+    """
+    Run the check_if_input_is_ok function, 
+    if the user click cancel or other things.
+    """
     update_assignee = \
 check_if_input_is_ok(update_assignee, update_assignee_msg, update_title)
 
@@ -259,7 +267,10 @@ check_if_input_is_ok(update_assignee, update_assignee_msg, update_title)
     update_status = easygui.buttonbox\
 (update_status_msg,update_title, update_status_choices)
 
-    #Stop the add_new_task fuction, if the user click cancel.
+    """
+    Run the check_if_input_is_ok function, 
+    if the user click cancel or other things.
+    """
     update_status = check_if_input_is_ok\
 (update_status, update_assignee_msg, update_title)
 
@@ -348,7 +359,10 @@ def search_task_member():
     search_task_or_member = easygui.buttonbox\
 (search_task_member_msg, search_task_member_title, search_task_member_choices)
     
-    #Run the check_if_input_ok function, to cheaa user click cancel.
+    """
+    Run the check_if_input_is_ok function, 
+    if the user click cancel or other things.
+    """
     search_task_or_member = \
 check_if_input_is_ok\
 (search_task_or_member, search_task_member_msg, search_task_member_title)
@@ -377,6 +391,10 @@ check_if_input_is_ok\
             search_task_member = easygui.buttonbox\
 (task_msg, task_title, task_catogories) 
 
+            """
+            Run the check_if_input_is_ok function, 
+            if the user click cancel or other things.
+            """
             search_task_member = \
 check_if_input_is_ok(search_task_member, task_msg, task_list)
 
@@ -386,11 +404,9 @@ check_if_input_is_ok(search_task_member, task_msg, task_list)
 f"\n{tasks}: {Task_Dictionary[search_task_member][tasks]}" 
 
     #Display member's informations through message box.
-            search_task_msg = easygui.msgbox(task_output, task_title)
+    easygui.msgbox(task_output, task_title)
 
-            search_task_msg = \
-check_if_input_is_ok(search_task_msg, task_msg, task_title) 
-
+    main_menu()
 
     #If the choice is Member...   
     if search_task_or_member == "Member":
@@ -415,6 +431,10 @@ check_if_input_is_ok(search_task_msg, task_msg, task_title)
             search_task_member = easygui.buttonbox\
 (member_msg, member_title, member_categories) 
             
+            """
+            Run the check_if_input_is_ok function, 
+            if the user click cancel or other things.
+            """
             search_task_member = \
 check_if_input_is_ok(search_task_member, member_msg, member_title) 
             
@@ -424,10 +444,7 @@ check_if_input_is_ok(search_task_member, member_msg, member_title)
 f"\n{members}: {Team_Member_Dictionary[search_task_member][members]}" 
 
     #Display member's informations through message box.
-            search_member_msg =  easygui.msgbox(member_output, member_title)
-
-            search_member_msg = \
-check_if_input_is_ok(search_member_msg, member_msg, member_title) 
+    easygui.msgbox(member_output, member_title)
             
     #Finish the function and back to main menu.
     main_menu()
