@@ -237,6 +237,7 @@ def update_task():
 
     #Create an empty list to hold task catogories.
     update_task_catogories = [] 
+    
 
     #Adding the Task List from Task Dictionary to a list.
     for update_task_list in Task_Dictionary: 
