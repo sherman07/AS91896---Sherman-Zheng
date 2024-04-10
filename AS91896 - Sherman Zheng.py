@@ -123,6 +123,12 @@ def add_new_task():
     #Display the message for user to add description for new task.
     add_description_msg = "Enter the description of the task:"
 
+    #Display the message for user to add assignee for new task.
+    add_assignee_msg = "Select Assignee"
+
+    #Choices for useer to choose for add an assignee.
+    add_assignee_choices = ["JSM", "JLO", "BDI", "None"]
+
     #Display the message for user to add priority for new task.
     add_priority_msg = "Enter the priorty rating (1 - 3):"
 
@@ -155,10 +161,22 @@ def add_new_task():
     """
     description = \
 check_if_input_is_ok(description, add_description_msg, add_title)  
-                
+    
+    #Asking the user to add an assignee variable of the new task.
+    assignee = easygui.buttonbox\
+(add_assignee_msg, add_title, add_assignee_choices)
+
+    """
+    Run the check_if_input_is_ok function, 
+    if the user click cancel or other things.
+    """
+    assignee = \
+check_if_input_is_ok(assignee, add_assignee_msg, add_title)  
+
+
     #Asking the user to add a priority variable of the new task.
     priority = easygui.integerbox(add_priority_msg,add_title, \
-owerbound = PRIORITY_LOWER_LIMIT, upperbound = PRIORITY_UPPER_LIMIT)
+lowerbound = PRIORITY_LOWER_LIMIT, upperbound = PRIORITY_UPPER_LIMIT)
     
     """
     If we do the same error prevention method like title.
@@ -188,20 +206,26 @@ owerbound = PRIORITY_LOWER_LIMIT, upperbound = PRIORITY_UPPER_LIMIT)
                     
     #The new_task cantains all information that the user had input.
     new_task = {
-                "Title": title,
-                "Description": description,
-                "Assignee": None,
-                "Priority": priority,
-                "Status": status
+            "Title": title,
+            "Description": description,
+            "Assignee": assignee,
+            "Priority": priority,
+            "Status": status
     }
 
     #Adding a new task to the Task_Dictionary, with an ID.
     Task_Dictionary[new_task_id] = new_task
-                    
+
+    #Display out the message to tell the user that task has been added.
     easygui.msgbox(f"{add_task_msg}{new_task_id}.", add_title)
 
-    #Finish the function and back to main menu.
     main_menu()
+
+    #Add the new task into member's task list, if ...
+    if status == "Completed" or "Not Started" and assignee == "None":
+        Team_Member_Dictionary[assignee]["Task Assigned"].append(new_task_id)
+                    
+    #Finish the function and back to main menu.
 
 def update_task():
 
@@ -292,21 +316,6 @@ check_if_input_is_ok(update_assignee, update_assignee_msg, update_title)
         #Update the task status to the Task Dictionary.
         Task_Dictionary[update_user_task]["Status"] = update_status
 
-        """
-        Update the assignee to the Task Dictionary, 
-        if the task is not Completed and is in the 
-         member's task list.
-        """
-    if update_status not in Team_Member_Dictionary and update_user_task \
-in Team_Member_Dictionary[Task_Dictionary[update_user_task]\
-["Assignee"]]["Task Assigned"]:
-                
-    #Update the Assignee in the Task Dictionary.
-        Task_Dictionary[update_user_task]["Assignee"] = update_assignee
-
-        #Update the task status to the Task Dictionary.
-        Task_Dictionary[update_user_task]["Status"] = update_status
-
     """
     Remove the task from member's task list, 
     if the task is in the member's task list and is Completed.
@@ -320,7 +329,7 @@ Team_Member_Dictionary[Task_Dictionary[update_user_task]\
 ["Assignee"]]["Task Assigned"].remove(update_user_task)
 
     #Update the Assignee of the Completed task to None.
-        Task_Dictionary[update_user_task]["Assignee"] = None
+        Task_Dictionary[update_user_task]["Assignee"] = update_assignee
 
     #Update the task status to the Task Dictionary.
         Task_Dictionary[update_user_task]["Status"] = update_status
@@ -404,9 +413,9 @@ check_if_input_is_ok(search_task_member, task_msg, task_list)
 f"\n{tasks}: {Task_Dictionary[search_task_member][tasks]}" 
 
     #Display member's informations through message box.
-    easygui.msgbox(task_output, task_title)
+            easygui.msgbox(task_output, task_title)
 
-    main_menu()
+            main_menu()
 
     #If the choice is Member...   
     if search_task_or_member == "Member":
@@ -444,7 +453,7 @@ check_if_input_is_ok(search_task_member, member_msg, member_title)
 f"\n{members}: {Team_Member_Dictionary[search_task_member][members]}" 
 
     #Display member's informations through message box.
-    easygui.msgbox(member_output, member_title)
+            easygui.msgbox(member_output, member_title)
             
     #Finish the function and back to main menu.
     main_menu()
