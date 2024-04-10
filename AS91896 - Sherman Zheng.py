@@ -549,8 +549,8 @@ def main_menu():
     """
 
     """
-        Allows the user to repeat in the menu page, through the while loop,
-        after the user finish one function.
+    Allows the user to repeat in the menu page, through the while loop,
+    after the user finish one function.
     """
 
     #Diplay the function that the user is on right now. 
