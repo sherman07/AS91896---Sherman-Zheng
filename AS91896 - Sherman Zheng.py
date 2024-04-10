@@ -219,13 +219,13 @@ lowerbound = PRIORITY_LOWER_LIMIT, upperbound = PRIORITY_UPPER_LIMIT)
     #Display out the message to tell the user that task has been added.
     easygui.msgbox(f"{add_task_msg}{new_task_id}.", add_title)
 
-    main_menu()
-
     #Add the new task into member's task list, if ...
-    if status == "Completed" or "Not Started" and assignee == "None":
+    if status != "Completed" or "Not Started" and assignee != "None":
         Team_Member_Dictionary[assignee]["Task Assigned"].append(new_task_id)
-                    
+
     #Finish the function and back to main menu.
+    main_menu()
+                    
 
 def update_task():
 
@@ -415,6 +415,7 @@ f"\n{tasks}: {Task_Dictionary[search_task_member][tasks]}"
     #Display member's informations through message box.
             easygui.msgbox(task_output, task_title)
 
+    #Finish the function and back to main menu.
             main_menu()
 
     #If the choice is Member...   
