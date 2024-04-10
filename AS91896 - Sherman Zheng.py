@@ -74,12 +74,12 @@ Team_Member_Dictionary = {
 def check_if_input_is_ok(user_input, user_message, user_title):
 
     """
-    The function checks if the user input is valid(Not just empty).
+    The function checks if the user input is valid (Not just empty).
 
     Args:
-      user_input: The user's input to be validated.
-      user_message: The message to display to the user in the input box.
-      user_title: The title of the input box.
+    user_input: The user's input to be validated.
+    user_message: The message to display to the user in the input box.
+    user_title: The title of the input box.
     """
 
     #Loop until the user enter valid input.
@@ -98,7 +98,7 @@ def check_if_input_is_ok(user_input, user_message, user_title):
             user_input = easygui.enterbox(user_message, user_title)
 
             """
-            If the user input is valid (not None or not empty string), 
+            If the user input is valid (not None or not empty string),
             return back to user_input.
             """
         else:
@@ -208,7 +208,7 @@ def update_task():
 
     """
     Updating a new information to a specific task from the task 
-    dictionary. The function will allows user to update informations 
+    dictionary. The function will allows user to update informations
     in specific task, which is from the task dictionary.
     """
 
@@ -507,7 +507,6 @@ def output_task_collection():
     to look through all task's informations. 
     """
     
-
     #An empty string to store new informations.
     task_output = ""
 
