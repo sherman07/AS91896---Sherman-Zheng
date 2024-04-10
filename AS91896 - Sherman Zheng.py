@@ -80,7 +80,6 @@ def check_if_input_is_ok(user_input, user_message, user_title):
       user_input: The user's input to be validated.
       user_message: The message to display to the user in the input box.
       user_title: The title of the input box.
-
     """
 
     #Loop until the user enter valid input.
