@@ -242,7 +242,7 @@ def update_task():
 
     #Display the message for user to update an assignee.
     update_assignee_msg = \
-"Enter the name of the assignee to update for the task:"
+"Choose the name of the assignee to update for the task:"
         
     #Choices for user to choose for update an assignee.
     update_assignee_choices = ["JSM", "JLO", "BDI"]
@@ -315,6 +315,20 @@ check_if_input_is_ok(update_assignee, update_assignee_msg, update_title)
         #Update the task status to the Task Dictionary.
         Task_Dictionary[update_user_task]["Status"] = update_status
 
+        """
+        Update the assignee to the Task Dictionary, 
+        if the task is not Completed and is in the 
+        member's task list.
+        """
+        if update_status not in Team_Member_Dictionary and update_task \
+in Team_Member_Dictionary[Task_Dictionary[update_task]\
+["Assignee"]]["Task Assigned"]:
+                
+        #Update the Assignee in the Task Dictionary.
+            Task_Dictionary[update_user_task]["Assignee"] = update_assignee
+
+        #Update the task status to the Task Dictionary.
+            Task_Dictionary[update_user_task]["Status"] = update_status
     """
     Remove the task from member's task list, 
     if the task is in the member's task list and is Completed.
@@ -328,7 +342,7 @@ Team_Member_Dictionary[Task_Dictionary[update_user_task]\
 ["Assignee"]]["Task Assigned"].remove(update_user_task)
 
     #Update the Assignee of the Completed task to None.
-        Task_Dictionary[update_user_task]["Assignee"] = update_assignee
+        Task_Dictionary[update_user_task]["Assignee"] = None
 
     #Update the task status to the Task Dictionary.
         Task_Dictionary[update_user_task]["Status"] = update_status
