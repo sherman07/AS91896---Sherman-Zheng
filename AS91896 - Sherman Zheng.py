@@ -159,7 +159,7 @@ check_if_input_is_ok(description, add_description_msg, add_title)
                 
     #Asking the user to add a priority variable of the new task.
     priority = easygui.integerbox(add_priority_msg,add_title, \
-            lowerbound = PRIORITY_LOWER_LIMIT, upperbound = PRIORITY_UPPER_LIMIT)
+owerbound = PRIORITY_LOWER_LIMIT, upperbound = PRIORITY_UPPER_LIMIT)
     
     """
     If we do the same error prevention method like title.
@@ -235,6 +235,7 @@ def update_task():
     #Create an empty list to hold task catogories.
     update_task_catogories = [] 
 
+    #Adding the Task List from Task Dictionary to a list.
     for update_task_list in Task_Dictionary: 
         update_task_catogories.append(update_task_list)
 
@@ -347,6 +348,7 @@ def search_task_member():
     search_task_or_member = easygui.buttonbox\
 (search_task_member_msg, search_task_member_title, search_task_member_choices)
     
+    #Run the check_if_input_ok function, to cheaa user click cancel.
     search_task_or_member = \
 check_if_input_is_ok\
 (search_task_or_member, search_task_member_msg, search_task_member_title)
