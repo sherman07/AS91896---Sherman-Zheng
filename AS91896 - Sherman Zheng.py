@@ -121,13 +121,7 @@ def add_new_task():
 
     #Display the message for user to add description for new task.
     add_description_msg = "Enter the description of the task:"
-
-    #Display the message for user to add assignee for new task.
-    add_assignee_msg = "Select Assignee"
-
-    #Choices for useer to choose for add an assignee.
-    add_assignee_choices = ["JSM", "JLO", "BDI"]
-
+    
     #Display the message for user to add priority for new task.
     add_priority_msg = "Enter the priorty rating (1 - 3):"
 
@@ -160,18 +154,6 @@ def add_new_task():
     """
     description = \
 check_if_input_is_ok(description, add_description_msg, add_title)  
-    
-    #Asking the user to add an assignee variable of the new task.
-    assignee = easygui.buttonbox\
-(add_assignee_msg, add_title, add_assignee_choices)
-
-    """
-    Run the check_if_input_is_ok function, 
-    if the user click cancel or other things.
-    """
-    assignee = \
-check_if_input_is_ok(assignee, add_assignee_msg, add_title)  
-
 
     #Asking the user to add a priority variable of the new task.
     priority = easygui.integerbox(add_priority_msg,add_title, \
@@ -207,7 +189,7 @@ lowerbound = PRIORITY_LOWER_LIMIT, upperbound = PRIORITY_UPPER_LIMIT)
     new_task = {
             "Title": title,
             "Description": description,
-            "Assignee": assignee,
+            "Assignee": None,
             "Priority": priority,
             "Status": status
     }
@@ -217,10 +199,6 @@ lowerbound = PRIORITY_LOWER_LIMIT, upperbound = PRIORITY_UPPER_LIMIT)
 
     #Display out the message to tell the user that task has been added.
     easygui.msgbox(f"{add_task_msg}{new_task_id}.", add_title)
-
-    #Add the new task into member's task list, if ...
-    if status != "Completed" or "Not Started" and assignee != "None":
-        Team_Member_Dictionary[assignee]["Task Assigned"].append(new_task_id)
 
     #Finish the function and back to main menu.
     main_menu()
