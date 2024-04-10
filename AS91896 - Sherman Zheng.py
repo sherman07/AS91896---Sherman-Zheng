@@ -593,7 +593,7 @@ def main_menu():
     if the user click the Output Task Collection button.
     """
 
-     #Stop the programme, if the user click Exit button.
+    #Stop the programme, if the user click Exit button.
 
     if user_choices == "Add New Task":
         add_new_task()
