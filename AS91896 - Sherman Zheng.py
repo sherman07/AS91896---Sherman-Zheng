@@ -126,7 +126,7 @@ def add_new_task():
     add_assignee_msg = "Select Assignee"
 
     #Choices for useer to choose for add an assignee.
-    add_assignee_choices = ["JSM", "JLO", "BDI", "None"]
+    add_assignee_choices = ["JSM", "JLO", "BDI"]
 
     #Display the message for user to add priority for new task.
     add_priority_msg = "Enter the priorty rating (1 - 3):"
@@ -320,8 +320,8 @@ check_if_input_is_ok(update_assignee, update_assignee_msg, update_title)
         if the task is not Completed and is in the 
         member's task list.
         """
-        if update_status not in Team_Member_Dictionary and update_task \
-in Team_Member_Dictionary[Task_Dictionary[update_task]\
+        if update_status not in Team_Member_Dictionary and update_user_task \
+in Team_Member_Dictionary[Task_Dictionary[update_user_task]\
 ["Assignee"]]["Task Assigned"]:
                 
         #Update the Assignee in the Task Dictionary.
