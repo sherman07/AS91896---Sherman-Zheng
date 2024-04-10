@@ -504,8 +504,8 @@ def generate_report():
 def output_task_collection():
 
     """
-    Outputting the task collection in a readable format, allows the user
-    to look through all task's informations. 
+    Outputting the task collection in a readable format, 
+    allows the user to look through all task's informations. 
     """
     
     #An empty string to store new informations.
