@@ -556,7 +556,6 @@ def main_menu():
 "Search Task or Member", "Generate Task Report", \
 "Output Task Collection", "Exit"]
         
-
     #Allows the user to make a choice.
     user_choices = easygui.buttonbox(menu_info, menu_title, menu_choices)
 
