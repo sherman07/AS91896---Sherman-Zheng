@@ -299,7 +299,7 @@ check_if_input_is_ok(update_assignee, update_assignee_msg, update_title)
         if the task is not Completed and is in the 
         member's task list.
         """
-        if update_status not in Team_Member_Dictionary and update_user_task \
+    if update_status not in Team_Member_Dictionary and update_user_task \
 in Team_Member_Dictionary[Task_Dictionary[update_user_task]\
 ["Assignee"]]["Task Assigned"]:
                 
