@@ -554,7 +554,7 @@ def main_menu():
     """
 
     #Diplay the function that the user is on right now. 
-    menu_title = "Welcome to Task Management System"
+    menu_title = "Task Management System"
 
     #Display message for user to make an option.
     menu_info = "Select One Option:"
